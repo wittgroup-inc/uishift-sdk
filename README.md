@@ -130,7 +130,7 @@ Here's how you can create a valid JSON document for a `ScreenConfiguration`.
 ### Example JSON Configuration
 
 ```json
- {
+{
   "components": [
     {
       "type": "Column",
@@ -140,7 +140,7 @@ Here's how you can create a valid JSON document for a `ScreenConfiguration`.
           "type": "Text",
           "id": "welcomeText",
           "content": "Welcome to Your Application",
-          "style": "mainTitle"
+          "style": "primaryHeader"
         },
         {
           "type": "Text",
@@ -151,7 +151,7 @@ Here's how you can create a valid JSON document for a `ScreenConfiguration`.
         {
           "type": "Image",
           "id": "appImage",
-          "url": "https://example.com/app_image.png",
+          "url": "https://picsum.photos/id/237/200/300",
           "description": "App screenshot"
         },
         {
