@@ -149,7 +149,7 @@ val sampleConfigJson = """
           "type": "Text",
           "id": "welcomeText",
           "content": "Welcome to Your Application",
-          "style": "mainTitle"
+          "style": "primaryHeader"
         },
         {
           "type": "Text",
@@ -160,7 +160,7 @@ val sampleConfigJson = """
         {
           "type": "Image",
           "id": "appImage",
-          "url": "https://example.com/app_image.png",
+          "url": "https://picsum.photos/id/237/200/300",
           "description": "App screenshot"
         },
         {
