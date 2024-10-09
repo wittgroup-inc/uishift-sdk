@@ -125,7 +125,7 @@ The following actions can be performed in response to UI events:
 
 ## Creating a ScreenConfiguration JSON
 
-Here's how you can create a valid JSON document for a `ScreenConfiguration`.
+Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
 
 ### Example JSON Configuration
 
@@ -246,3 +246,6 @@ Here's how you can create a valid JSON document for a `ScreenConfiguration`.
     }
   ]
 }
+````
+### Result of above JSON Configuration
+![Screenshot of UIShift](Screenshot_20241009_185731.png)
