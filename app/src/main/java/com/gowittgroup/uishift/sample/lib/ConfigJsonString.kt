@@ -144,6 +144,7 @@ val sampleConfigJson = """
     {
       "type": "Column",
       "id": "mainColumn",
+      "isScrollable": true,
       "children": [
         {
           "type": "Text",

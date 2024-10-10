@@ -4,10 +4,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import com.gowittgroup.uishift.models.ScreenConfiguration
 import com.gowittgroup.uishift.parser.ConfigParser
+import com.gowittgroup.uishift.renderers.RenderScreen
 
 @Composable
 fun ScreenRenderingEngine(jsonConfiguration: String) {
-    // Moshi setup
 
     // Parse JSON configuration
     val screenConfiguration: ScreenConfiguration? = ConfigParser().parse(jsonConfiguration)
