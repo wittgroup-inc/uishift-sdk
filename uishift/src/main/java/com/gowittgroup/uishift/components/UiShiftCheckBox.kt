@@ -1,18 +1,10 @@
-package com.gowittgroup.uishift.theme
+package com.gowittgroup.uishift.components
 
 import UiShiftColorScheme
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.runtime.Composable
-
-@Composable
-fun MaterialThemeCheckBox(checked: Boolean = false, onCheckedChange: (Boolean) -> Unit) {
-    Checkbox(
-        checked = checked,
-        onCheckedChange = onCheckedChange
-    )
-}
-
+import com.gowittgroup.uishift.theme.ThemeConfig
 
 @Composable
 fun UiShiftCheckBox(

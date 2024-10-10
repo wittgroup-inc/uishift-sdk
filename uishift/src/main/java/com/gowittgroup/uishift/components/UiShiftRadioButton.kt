@@ -1,21 +1,10 @@
-package com.gowittgroup.uishift.theme
+package com.gowittgroup.uishift.components
 
 import UiShiftColorScheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.runtime.Composable
-
-
-@Composable
-fun MaterialThemeRadioButton(
-    selected: Boolean,
-    onClick: () -> Unit
-) {
-    RadioButton(
-        selected = selected,
-        onClick = onClick
-    )
-}
+import com.gowittgroup.uishift.theme.ThemeConfig
 
 @Composable
 fun UiShiftRadioButton(

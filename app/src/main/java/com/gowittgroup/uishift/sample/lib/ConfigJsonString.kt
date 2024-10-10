@@ -383,11 +383,12 @@ val newSample = """
           "type": "Switch",
           "id": "botSetting",
           "label": "Enable bot",
-          "isChecked": false
+          "isChecked": true
         },
         {
           "type": "Divider",
           "id": "startDivider",
+          "direction": "horizontal",
           "thickness": 1
         },
         {
@@ -398,6 +399,7 @@ val newSample = """
         {
           "type": "Divider",
           "id": "endDivider",
+          "direction": "vertical",
           "thickness": 1
         }
       ]

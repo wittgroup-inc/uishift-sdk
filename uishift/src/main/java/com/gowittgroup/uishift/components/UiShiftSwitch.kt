@@ -1,20 +1,10 @@
-package com.gowittgroup.uishift.theme
+package com.gowittgroup.uishift.components
 
 import UiShiftColorScheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
-
-@Composable
-fun MaterialThemeSwitch(
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
-) {
-    Switch(
-        checked = checked,
-        onCheckedChange = onCheckedChange
-    )
-}
+import com.gowittgroup.uishift.theme.ThemeConfig
 
 @Composable
 fun UiShiftSwitch(

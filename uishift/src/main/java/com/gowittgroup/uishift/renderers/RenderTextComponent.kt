@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gowittgroup.uishift.models.UIComponent
-import com.gowittgroup.uishift.theme.UiShiftText
+import com.gowittgroup.uishift.components.UiShiftText
 
 @Composable
 fun RenderTextComponent(component: UIComponent.TextComponent) {

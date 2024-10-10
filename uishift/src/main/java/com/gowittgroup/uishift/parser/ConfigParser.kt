@@ -5,6 +5,7 @@ import com.gowittgroup.uishift.models.Action
 import com.gowittgroup.uishift.models.UIComponent
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class ConfigParser {
     fun parse(jsonConfigString: String): ScreenConfiguration? {
@@ -32,6 +33,7 @@ class ConfigParser {
                     .withSubtype(Action.ValidateField::class.java, "ValidateField")
                     .withDefaultValue(Action.NoAction)
             )
+            .add(KotlinJsonAdapterFactory())
             .build()
         val jsonAdapter = moshi.adapter(ScreenConfiguration::class.java)
 

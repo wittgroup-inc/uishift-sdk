@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import com.gowittgroup.uishift.ScreenState
 import com.gowittgroup.uishift.models.UIComponent
-import com.gowittgroup.uishift.theme.UiShiftCheckBox
+import com.gowittgroup.uishift.components.UiShiftCheckBox
 
 @Composable
 fun RenderCheckBoxComponent(

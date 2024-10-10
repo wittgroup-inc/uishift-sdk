@@ -3,7 +3,7 @@ package com.gowittgroup.uishift.models
 import com.squareup.moshi.JsonClass
 
 sealed class UIComponent {
-    abstract val id: String // Add id to all components
+    abstract val id: String
 
     @JsonClass(generateAdapter = true)
     data class TextComponent(
@@ -67,27 +67,28 @@ sealed class UIComponent {
     @JsonClass(generateAdapter = true)
     data class SwitchComponent(
         val label: String,
-        val isChecked: Boolean, // Initial state (checked or unchecked)
+        val isChecked: Boolean,
         override val id: String
     ) : UIComponent()
 
     @JsonClass(generateAdapter = true)
     data class RadioButtonComponent(
         val label: String,
-        val isSelected: Boolean, // Initially selected option (if any)
+        val isSelected: Boolean,
         override val id: String
     ) : UIComponent()
 
     @JsonClass(generateAdapter = true)
     data class DividerComponent(
-        val thickness: Int = 1, // Thickness of the divider line
-        val color: String = "#000000", // Color of the divider in hex
+        val thickness: Int = 1,
+        val direction: Direction,
+        val color: String = "#000000",
         override val id: String
     ) : UIComponent()
 
     @JsonClass(generateAdapter = true)
     data class SpacerComponent(
-        val height: Int = 16, // Height of the spacer
+        val height: Int = 16,
         override val id: String
     ) : UIComponent()
 

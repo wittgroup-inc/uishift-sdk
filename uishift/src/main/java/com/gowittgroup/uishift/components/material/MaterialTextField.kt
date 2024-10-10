@@ -1,4 +1,4 @@
-package com.gowittgroup.uishift.theme
+package com.gowittgroup.uishift.components.material
 
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -41,30 +41,5 @@ fun UiShiftTextField(
             unfocusedIndicatorColor = colorScheme.textFieldBorderColor,
             disabledIndicatorColor = colorScheme.textFieldDisabledBorderColor
         ),
-    )
-}
-
-@Composable
-fun MaterialThemeTextField(
-    value: String,
-    modifier: Modifier = Modifier,
-    onValueChange: (String) -> Unit,
-    label: String,
-    hint: String
-) {
-    TextField(
-        value = value,
-        onValueChange = onValueChange,
-        label = {
-            Text(
-                label
-            )
-        },
-        placeholder = {
-            Text(
-                hint
-            )
-        },
-        modifier = modifier,
     )
 }
