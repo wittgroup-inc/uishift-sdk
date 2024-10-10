@@ -43,7 +43,7 @@ The following UI components are available for use in your configuration document
 
 - **Properties**:
   - `children`: List<UIComponent> (List of child components)
-  - 
+  - `isScrollable`: Boolean (Default value `false`)
   - `id`: String (Unique identifier)
 
 ### 6. TextFieldComponent
