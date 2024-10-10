@@ -15,7 +15,7 @@ The following UI components are available for use in your configuration document
 - **Properties**:
   - `content`: String (The text to display)
   - `style`: String (The style token to apply)
-  - `id`: String? (Optional unique identifier)
+  - `id`: String (Unique identifier)
 
 ### 2. ButtonComponent
 
@@ -23,26 +23,28 @@ The following UI components are available for use in your configuration document
   - `label`: String (The label displayed on the button)
   - `style`: String (The style token for button appearance)
   - `onClickAction`: Action (The action to perform when clicked)
-  - `id`: String? (Optional unique identifier)
+  - `id`: String (Unique identifier)
 
 ### 3. ImageComponent
 
 - **Properties**:
   - `url`: String (The URL of the image)
   - `description`: String (Description of the image)
-  - `id`: String? (Optional unique identifier)
+  - `id`: String (Unique identifier)
 
 ### 4. ColumnComponent
 
 - **Properties**:
   - `children`: List<UIComponent> (List of child components)
-  - `id`: String? (Optional unique identifier)
+  - `isScrollable`: Boolean (Default value `false`)
+  - `id`: String (Unique identifier)
 
 ### 5. RowComponent
 
 - **Properties**:
   - `children`: List<UIComponent> (List of child components)
-  - `id`: String? (Optional unique identifier)
+  - 
+  - `id`: String (Unique identifier)
 
 ### 6. TextFieldComponent
 
@@ -50,14 +52,14 @@ The following UI components are available for use in your configuration document
   - `label`: String (The label for the text field)
   - `hint`: String (The hint text shown inside the text field)
   - `initialValue`: String (The default value, defaults to empty)
-  - `id`: String? (Optional unique identifier)
+  - `id`: String (Unique identifier)
 
 ### 7. CheckBoxComponent
 
 - **Properties**:
   - `label`: String (The label for the checkbox)
   - `isChecked`: Boolean (Whether the checkbox is checked, defaults to false)
-  - `id`: String? (Optional unique identifier)
+  - `id`: String (Unique identifier)
 
 ### 8. SliderComponent
 
@@ -65,12 +67,12 @@ The following UI components are available for use in your configuration document
   - `min`: Float (Minimum value of the slider)
   - `max`: Float (Maximum value of the slider)
   - `initialValue`: Float (Initial value of the slider)
-  - `id`: String? (Optional unique identifier)
+  - `id`: String (Unique identifier)
 
 ### 9. Unknown Component
 
 - **Properties**:
-  - `id`: String? (Optional unique identifier)
+  - `id`: String (Unique identifier)
 
 ## Actions Overview
 
