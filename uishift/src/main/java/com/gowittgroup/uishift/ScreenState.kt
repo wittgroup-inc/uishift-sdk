@@ -7,6 +7,8 @@ class ScreenState {
     // Maintain the state of text fields, checkboxes, and sliders using a map
     val textFieldsState: MutableMap<String?, String> = mutableMapOf()
     val checkBoxState: MutableMap<String?, Boolean> = mutableMapOf()
+    val radioButtonState: MutableMap<String?, Boolean> = mutableMapOf()
+    val switchState: MutableMap<String?, Boolean> = mutableMapOf()
     val sliderState: MutableMap<String?, Float> = mutableMapOf()
 
     // Function to update text field state
@@ -20,6 +22,18 @@ class ScreenState {
     fun updateCheckBoxState(id: String?, isChecked: Boolean) {
         if (id != null) {
             checkBoxState[id] = isChecked
+        }
+    }
+
+    fun updateRadioButtonState(id: String?, isChecked: Boolean) {
+        if (id != null) {
+            radioButtonState[id] = isChecked
+        }
+    }
+
+    fun updateSwitchState(id: String?, isChecked: Boolean) {
+        if (id != null) {
+            switchState[id] = isChecked
         }
     }
 

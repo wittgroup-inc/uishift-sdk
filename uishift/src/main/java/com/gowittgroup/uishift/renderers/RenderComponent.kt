@@ -22,7 +22,15 @@ fun RenderComponent(component: UIComponent, screenState: ScreenState) {
 
         is UIComponent.CheckBoxComponent -> RenderCheckBoxComponent(screenState, component)
 
+        is UIComponent.RadioButtonComponent -> RenderRadioButtonComponent(screenState, component)
+
+        is UIComponent.SwitchComponent -> RenderSwitchComponent(screenState, component)
+
         is UIComponent.SliderComponent -> RenderSliderComponent(screenState, component)
+
+        is UIComponent.SpacerComponent -> RenderSpacerComponent(component)
+
+        is UIComponent.DividerComponent -> RenderDividerComponent(component)
 
         else -> Log.d("Render", "Unknown component type")
     }

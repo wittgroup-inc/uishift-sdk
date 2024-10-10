@@ -19,6 +19,10 @@ class ConfigParser {
                     .withSubtype(UIComponent.TextFieldComponent::class.java, "TextField")
                     .withSubtype(UIComponent.CheckBoxComponent::class.java, "Checkbox")
                     .withSubtype(UIComponent.SliderComponent::class.java, "Slider")
+                    .withSubtype(UIComponent.RadioButtonComponent::class.java, "RadioButton")
+                    .withSubtype(UIComponent.SwitchComponent::class.java, "Switch")
+                    .withSubtype(UIComponent.DividerComponent::class.java, "Divider")
+                    .withSubtype(UIComponent.SpacerComponent::class.java, "Spacer")
                     .withDefaultValue(UIComponent.Unknown)
             )
             .add(

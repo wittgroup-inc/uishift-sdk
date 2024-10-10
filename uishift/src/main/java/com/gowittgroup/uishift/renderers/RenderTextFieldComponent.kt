@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gowittgroup.uishift.ScreenState
 import com.gowittgroup.uishift.models.UIComponent
+import com.gowittgroup.uishift.theme.UiShiftTextField
 
 @Composable
 fun RenderTextFieldComponent(
@@ -24,14 +25,14 @@ fun RenderTextFieldComponent(
             screenState.textFieldsState[component.id] ?: component.initialValue
         )
     }
-    TextField(
+    UiShiftTextField(
         value = text,
         onValueChange = {
             text = it
             screenState.updateTextFieldState(component.id, it)
         },
-        label = { Text(component.label) },
-        placeholder = { Text(component.hint) },
+        label = component.label,
+        hint = component.hint,
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
