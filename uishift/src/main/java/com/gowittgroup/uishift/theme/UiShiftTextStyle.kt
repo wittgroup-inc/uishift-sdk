@@ -3,6 +3,7 @@ package com.gowittgroup.uishift.theme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
+import com.gowittgroup.uishift.constants.TextStyleToken
 
 
 @Composable
@@ -11,67 +12,67 @@ fun materialTextStyle(token: String): TextStyle {
 
     return when (token) {
         // Custom tokens for display styles
-        "mainTitle" -> MaterialTheme.typography.displayLarge.copy(
+        TextStyleToken.MAIN_TITLE -> MaterialTheme.typography.displayLarge.copy(
             color = colorScheme.onBackground // or any color from the color scheme
         )
 
-        "sectionTitle" -> MaterialTheme.typography.displayMedium.copy(
+        TextStyleToken.SECTION_TITLE -> MaterialTheme.typography.displayMedium.copy(
             color = colorScheme.onBackground
         )
 
-        "subSectionTitle" -> MaterialTheme.typography.displaySmall.copy(
+        TextStyleToken.SUB_SECTION_TITLE -> MaterialTheme.typography.displaySmall.copy(
             color = colorScheme.onBackground
         )
 
         // Custom tokens for headline styles
-        "primaryHeader" -> MaterialTheme.typography.headlineLarge.copy(
+        TextStyleToken.PRIMARY_HEADER -> MaterialTheme.typography.headlineLarge.copy(
             color = colorScheme.onBackground
         )
 
-        "secondaryHeader" -> MaterialTheme.typography.headlineMedium.copy(
+        TextStyleToken.SECONDARY_HEADER -> MaterialTheme.typography.headlineMedium.copy(
             color = colorScheme.onBackground
         )
 
-        "tertiaryHeader" -> MaterialTheme.typography.headlineSmall.copy(
+        TextStyleToken.TERTIARY_HEADER -> MaterialTheme.typography.headlineSmall.copy(
             color = colorScheme.onBackground
         )
 
         // Custom tokens for title styles
-        "primaryTitle" -> MaterialTheme.typography.titleLarge.copy(
+        TextStyleToken.PRIMARY_TITLE -> MaterialTheme.typography.titleLarge.copy(
             color = colorScheme.primary // Use primary color for titles
         )
 
-        "secondaryTitle" -> MaterialTheme.typography.titleMedium.copy(
+        TextStyleToken.SECONDARY_TITLE -> MaterialTheme.typography.titleMedium.copy(
             color = colorScheme.primary
         )
 
-        "tertiaryTitle" -> MaterialTheme.typography.titleSmall.copy(
+        TextStyleToken.TERTIARY_TITLE -> MaterialTheme.typography.titleSmall.copy(
             color = colorScheme.primary
         )
 
         // Custom tokens for body text
-        "mainContent" -> MaterialTheme.typography.bodyLarge.copy(
+        TextStyleToken.MAIN_CONTENT -> MaterialTheme.typography.bodyLarge.copy(
             color = colorScheme.onSurface // Use onSurface color for body content
         )
 
-        "secondaryContent" -> MaterialTheme.typography.bodyMedium.copy(
+        TextStyleToken.SECONDARY_CONTENT -> MaterialTheme.typography.bodyMedium.copy(
             color = colorScheme.onSurface
         )
 
-        "smallContent" -> MaterialTheme.typography.bodySmall.copy(
+        TextStyleToken.SMALL_CONTENT -> MaterialTheme.typography.bodySmall.copy(
             color = colorScheme.onSurface
         )
 
         // Custom tokens for labels
-        "primaryLabel" -> MaterialTheme.typography.labelLarge.copy(
+        TextStyleToken.PRIMARY_LABEL -> MaterialTheme.typography.labelLarge.copy(
             color = colorScheme.onSurfaceVariant // Use onSurfaceVariant color for labels
         )
 
-        "secondaryLabel" -> MaterialTheme.typography.labelMedium.copy(
+        TextStyleToken.SECONDARY_LABEL -> MaterialTheme.typography.labelMedium.copy(
             color = colorScheme.onSurfaceVariant
         )
 
-        "smallLabel" -> MaterialTheme.typography.labelSmall.copy(
+        TextStyleToken.SMALL_LABEL -> MaterialTheme.typography.labelSmall.copy(
             color = colorScheme.onSurfaceVariant
         )
 
@@ -88,67 +89,67 @@ fun uiShiftTextStyle(token: String): TextStyle {
 
     return when (token) {
         // Custom tokens for display styles
-        "mainTitle" -> ThemeConfig.typography.mainTitle.copy(
+        TextStyleToken.MAIN_TITLE -> ThemeConfig.typography.mainTitle.copy(
             color = colorScheme.mainTitleTextColor
         )
 
-        "sectionTitle" -> ThemeConfig.typography.sectionTitle.copy(
+        TextStyleToken.SECTION_TITLE -> ThemeConfig.typography.sectionTitle.copy(
             color = colorScheme.sectionTitleTextColor
         )
 
-        "subSectionTitle" -> ThemeConfig.typography.subSectionTitle.copy(
+        TextStyleToken.SUB_SECTION_TITLE -> ThemeConfig.typography.subSectionTitle.copy(
             color = colorScheme.subSectionTitleTextColor
         )
 
         // Custom tokens for headline styles
-        "primaryHeader" -> ThemeConfig.typography.primaryHeader.copy(
+        TextStyleToken.PRIMARY_HEADER -> ThemeConfig.typography.primaryHeader.copy(
             color = colorScheme.primaryHeaderTextColor
         )
 
-        "secondaryHeader" -> ThemeConfig.typography.secondaryHeader.copy(
+        TextStyleToken.SECONDARY_HEADER -> ThemeConfig.typography.secondaryHeader.copy(
             color = colorScheme.secondaryHeaderTextColor
         )
 
-        "tertiaryHeader" -> ThemeConfig.typography.tertiaryHeader.copy(
+        TextStyleToken.TERTIARY_HEADER -> ThemeConfig.typography.tertiaryHeader.copy(
             color = colorScheme.tertiaryHeaderTextColor
         )
 
         // Custom tokens for title styles
-        "primaryTitle" -> ThemeConfig.typography.primaryTitle.copy(
+        TextStyleToken.PRIMARY_TITLE -> ThemeConfig.typography.primaryTitle.copy(
             color = colorScheme.primaryTitleTextColor
         )
 
-        "secondaryTitle" -> ThemeConfig.typography.secondaryTitle.copy(
+        TextStyleToken.SECONDARY_TITLE -> ThemeConfig.typography.secondaryTitle.copy(
             color = colorScheme.secondaryTitleTextColor
         )
 
-        "tertiaryTitle" -> ThemeConfig.typography.tertiaryTitle.copy(
+        TextStyleToken.TERTIARY_TITLE -> ThemeConfig.typography.tertiaryTitle.copy(
             color = colorScheme.tertiaryTitleTextColor
         )
 
         // Custom tokens for body text
-        "mainContent" -> ThemeConfig.typography.mainContent.copy(
+        TextStyleToken.MAIN_CONTENT -> ThemeConfig.typography.mainContent.copy(
             color = colorScheme.bodyTextColor
         )
 
-        "secondaryContent" -> ThemeConfig.typography.secondaryContent.copy(
+        TextStyleToken.SECONDARY_CONTENT -> ThemeConfig.typography.secondaryContent.copy(
             color = colorScheme.labelTextColor
         )
 
-        "smallContent" -> ThemeConfig.typography.smallContent.copy(
+        TextStyleToken.SMALL_CONTENT -> ThemeConfig.typography.smallContent.copy(
             color = colorScheme.labelTextColor
         )
 
         // Custom tokens for labels
-        "primaryLabel" -> ThemeConfig.typography.primaryLabel.copy(
+        TextStyleToken.PRIMARY_LABEL -> ThemeConfig.typography.primaryLabel.copy(
             color = colorScheme.labelTextColor
         )
 
-        "secondaryLabel" -> ThemeConfig.typography.secondaryLabel.copy(
+        TextStyleToken.SECONDARY_LABEL -> ThemeConfig.typography.secondaryLabel.copy(
             color = colorScheme.secondaryLabelTextColor
         )
 
-        "smallLabel" -> ThemeConfig.typography.smallLabel.copy(
+        TextStyleToken.SMALL_LABEL -> ThemeConfig.typography.smallLabel.copy(
             color = colorScheme.labelTextColor
         )
 

@@ -5,20 +5,20 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.runtime.Composable
 import com.gowittgroup.uishift.theme.ThemeConfig
+import com.gowittgroup.uishift.theme.ThemeConfig.colorScheme
 
 @Composable
 fun UiShiftCheckBox(
     checked: Boolean = false,
-    onCheckedChange: (Boolean) -> Unit,
-    colorScheme: UiShiftColorScheme = ThemeConfig.colorScheme // Accept the color scheme as a parameter
+    onCheckedChange: (Boolean) -> Unit
 ) {
     Checkbox(
         checked = checked,
         onCheckedChange = onCheckedChange,
         colors = CheckboxDefaults.colors(
-            checkedColor = colorScheme.checkboxCheckedColor, // Checked color from color scheme
-            uncheckedColor = colorScheme.checkboxUncheckedColor, // Unchecked color from color scheme
-            disabledCheckedColor = colorScheme.checkboxDisabledColor // Disabled color from color scheme
+            checkedColor = colorScheme.checkboxCheckedColor,
+            uncheckedColor = colorScheme.checkboxUncheckedColor,
+            disabledCheckedColor = colorScheme.checkboxDisabledColor
         )
     )
 }

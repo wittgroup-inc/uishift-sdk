@@ -12,7 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.gowittgroup.uishift.constants.ButtonStyleToken
 import com.gowittgroup.uishift.theme.ThemeConfig.colorScheme
+
+
+
 
 @Composable
 fun UiShiftButton(
@@ -21,7 +25,7 @@ fun UiShiftButton(
     onClick: () -> Unit
 ) {
     when (token) {
-        "primaryButton" -> {
+        ButtonStyleToken.PRIMARY_BUTTON -> {
             Button(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
@@ -35,7 +39,8 @@ fun UiShiftButton(
                 Text(label)
             }
         }
-        "secondaryButton" -> {
+
+        ButtonStyleToken.SECONDARY_BUTTON -> {
             ElevatedButton(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
@@ -49,7 +54,8 @@ fun UiShiftButton(
                 Text(label)
             }
         }
-        "tertiaryButton" -> {
+
+        ButtonStyleToken.TERTIARY_BUTTON -> {
             FilledTonalButton(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
@@ -63,7 +69,8 @@ fun UiShiftButton(
                 Text(label)
             }
         }
-        "outlinedButton" -> {
+
+        ButtonStyleToken.OUTLINED_BUTTON -> {
             OutlinedButton(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
@@ -77,7 +84,8 @@ fun UiShiftButton(
                 Text(label)
             }
         }
-        "destructiveButton" -> {
+
+        ButtonStyleToken.DESTRUCTIVE_BUTTON -> {
             Button(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
