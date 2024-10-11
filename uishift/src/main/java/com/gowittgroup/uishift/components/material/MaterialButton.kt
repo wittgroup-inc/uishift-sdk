@@ -12,13 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.gowittgroup.uishift.constants.ButtonStyleToken
 
 @Composable
 fun MaterialButton(token: String, label: String, onClick: () -> Unit) {
     val colorScheme = MaterialTheme.colorScheme // Get the Material3 color scheme
 
     when (token) {
-        "primaryButton" -> {
+        ButtonStyleToken.PRIMARY_BUTTON -> {
             Button(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
@@ -30,7 +31,7 @@ fun MaterialButton(token: String, label: String, onClick: () -> Unit) {
                 Text(label)
             }
         }
-        "secondaryButton" -> {
+        ButtonStyleToken.SECONDARY_BUTTON -> {
             ElevatedButton(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
@@ -42,7 +43,7 @@ fun MaterialButton(token: String, label: String, onClick: () -> Unit) {
                 Text(label)
             }
         }
-        "tertiaryButton" -> {
+        ButtonStyleToken.TERTIARY_BUTTON -> {
             FilledTonalButton(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
@@ -54,7 +55,7 @@ fun MaterialButton(token: String, label: String, onClick: () -> Unit) {
                 Text(label)
             }
         }
-        "outlinedButton" -> {
+        ButtonStyleToken.OUTLINED_BUTTON -> {
             OutlinedButton(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
@@ -68,7 +69,7 @@ fun MaterialButton(token: String, label: String, onClick: () -> Unit) {
                 Text(label)
             }
         }
-        "destructiveButton" -> {
+        ButtonStyleToken.DESTRUCTIVE_BUTTON -> {
             Button(
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),

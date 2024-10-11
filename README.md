@@ -137,6 +137,7 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
     {
       "type": "Column",
       "id": "mainColumn",
+      "isScrollable": true,
       "children": [
         {
           "type": "Text",
@@ -153,6 +154,8 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
         {
           "type": "Image",
           "id": "appImage",
+          "height": 200,
+          "scaleType": "crop",
           "url": "https://picsum.photos/id/237/200/300",
           "description": "App screenshot"
         },
@@ -197,9 +200,9 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "initialValue": ""
         },
         {
-          "type": "CheckBox",
+          "type": "Checkbox",
           "id": "termsCheckBox",
-          "label": "I agree to the terms and conditions",
+          "label": "I accept the terms and conditions",
           "isChecked": false
         },
         {
@@ -243,6 +246,35 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "id": "footerText",
           "content": "Thank you for using our app!",
           "style": "secondaryContent"
+        },
+        {
+          "type": "RadioButton",
+          "id": "red",
+          "label": "Red",
+          "isSelected": false
+        },
+        {
+          "type": "Switch",
+          "id": "botSetting",
+          "label": "Enable bot",
+          "isChecked": true
+        },
+        {
+          "type": "Divider",
+          "id": "startDivider",
+          "direction": "horizontal",
+          "thickness": 1
+        },
+        {
+          "type": "Spacer",
+          "id": "space",
+          "height": 32
+        },
+        {
+          "type": "Divider",
+          "id": "endDivider",
+          "direction": "horizontal",
+          "thickness": 1
         }
       ]
     }
