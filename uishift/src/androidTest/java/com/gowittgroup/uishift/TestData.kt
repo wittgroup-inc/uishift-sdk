@@ -25,7 +25,7 @@ val testData = """
           "id": "appImage",
           "height": 200,
           "scaleType": "crop",
-          "url": "https://picsum.photos/id/237/200/300",
+          "url": "{image url}",
           "description": "App screenshot"
         },
         {
