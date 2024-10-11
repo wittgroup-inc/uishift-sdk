@@ -1,14 +1,10 @@
 package com.gowittgroup.uishift.renderers
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -19,7 +15,7 @@ import coil.size.Size
 import com.gowittgroup.uishift.models.ScaleType
 import com.gowittgroup.uishift.models.UIComponent
 
-// TODO: Need to revisit this class for scaling issue 
+// TODO: Need to revisit this class for scaling issue
 @Composable
 fun RenderImageComponent(component: UIComponent.ImageComponent) {
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
