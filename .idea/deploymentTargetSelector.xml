@@ -8,9 +8,6 @@
       <SelectionState runConfigName="RegistrationScreenTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ExampleInstrumentedTest">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="RegistrationScreenTest (2)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
