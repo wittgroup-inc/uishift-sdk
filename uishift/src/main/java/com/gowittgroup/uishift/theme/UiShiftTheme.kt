@@ -1,6 +1,5 @@
 package com.gowittgroup.uishift.theme
 
-import UiShiftColorScheme
 import UiShiftTypography
 import androidx.compose.runtime.Composable
 
