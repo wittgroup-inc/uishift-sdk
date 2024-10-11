@@ -18,8 +18,9 @@ fun UiShiftSwitch(
         colors = SwitchDefaults.colors(
             checkedTrackColor = colorScheme.switchOnTrackColor,
             uncheckedTrackColor = colorScheme.switchOffTrackColor,
-            checkedThumbColor = colorScheme.switchThumbColor,
-            uncheckedThumbColor = colorScheme.switchDisabledThumbColor,
+            checkedThumbColor = colorScheme.switchOnThumbColor,
+            uncheckedThumbColor = colorScheme.switchOffThumbColor,
+            disabledCheckedThumbColor = colorScheme.switchDisabledThumbColor,
             disabledCheckedTrackColor = colorScheme.switchDisabledTrackColor
         )
     )

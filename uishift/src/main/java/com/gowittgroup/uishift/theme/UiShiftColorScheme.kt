@@ -45,7 +45,7 @@ class UiShiftColorScheme(
     val tertiaryTitleTextColor: Color = Color(0xFF007AFF),  // Tertiary title text color
     val bodyTextColor: Color = Color(0xFF8E8E93),  // Body text color
     val labelTextColor: Color = Color.DarkGray,  // Label text color
-    val secondaryLabelTextColor:Color = Color.DarkGray,
+    val secondaryLabelTextColor:Color = Color.DarkGray, // Secondary label text color
 
     // TextField Colors
     val textFieldBackground: Color = Color.White,  // TextField background color
@@ -53,7 +53,7 @@ class UiShiftColorScheme(
     val textFieldTextColor: Color = Color.Black,  // TextField text color
     val textFieldFocusedBorderColor: Color = Color(0xFF007AFF),  // TextField border color when focused
     val textFieldDisabledBackground: Color = Color(0xFFE0E0E0),  // TextField background when disabled
-    val textFieldDisabledBorderColor: Color = Color.Gray,
+    val textFieldDisabledBorderColor: Color = Color.Gray, // // TextField border color when disabled
 
     // Checkbox Colors
     val checkboxCheckedColor: Color = Color(0xFF007AFF),  // Checkbox color when checked
@@ -63,9 +63,10 @@ class UiShiftColorScheme(
     // Switch Colors
     val switchOnTrackColor: Color = Color(0xFF007AFF),  // Switch track color when ON
     val switchOffTrackColor: Color = Color.LightGray,  // Switch track color when OFF
-    val switchThumbColor: Color = Color.White,  // Switch thumb color
-    val switchDisabledTrackColor: Color = Color.Gray,  // Switch track color when disabled
-    val switchDisabledThumbColor: Color = Color.LightGray,  // Switch thumb color when disabled
+    val switchOnThumbColor: Color = Color.White,  // Switch checked thumb color
+    val switchOffThumbColor: Color = Color.Gray, // Switch unchecked thumb color
+    val switchDisabledTrackColor: Color = Color.LightGray,  // Switch track color when disabled
+    val switchDisabledThumbColor: Color = Color.Gray,  // Switch thumb color when disabled
 
     // Slider Colors
     val sliderTrackColor: Color = Color(0xFF007AFF),  // Slider track color

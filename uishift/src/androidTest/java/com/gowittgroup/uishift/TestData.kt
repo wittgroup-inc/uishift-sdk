@@ -1,30 +1,71 @@
 package com.gowittgroup.uishift
 
 val testData = """
-{
+   {
   "components": [
     {
       "type": "Column",
-      "id": "registrationColumn",
+      "id": "mainColumn",
+      "isScrollable": true,
       "children": [
         {
           "type": "Text",
-          "id": "headerText",
-          "content": "User Registration",
-          "style": "mainTitle"
+          "id": "welcomeText",
+          "content": "Welcome to Your Application",
+          "style": "primaryHeader"
+        },
+        {
+          "type": "Text",
+          "id": "appDescription",
+          "content": "This application helps you manage your tasks efficiently.",
+          "style": "mainContent"
+        },
+        {
+          "type": "Image",
+          "id": "appImage",
+          "height": 200,
+          "scaleType": "crop",
+          "url": "https://picsum.photos/id/237/200/300",
+          "description": "App screenshot"
+        },
+        {
+          "type": "Row",
+          "id": "buttonRow",
+          "children": [
+            {
+              "type": "Button",
+              "id": "startButton",
+              "label": "Start Now",
+              "style": "primaryButton",
+              "onClickAction": {
+                "type": "Navigate",
+                "destination": "task_list"
+              }
+            },
+            {
+              "type": "Button",
+              "id": "infoButton",
+              "label": "More Info",
+              "style": "secondaryButton",
+              "onClickAction": {
+                "type": "Navigate",
+                "destination": "info_page"
+              }
+            }
+          ]
         },
         {
           "type": "TextField",
-          "id": "nameField",
-          "label": "Name",
-          "hint": "Enter your full name",
+          "id": "userNameField",
+          "label": "Your Name",
+          "hint": "Enter your name",
           "initialValue": ""
         },
         {
           "type": "TextField",
           "id": "emailField",
-          "label": "Email",
-          "hint": "example@example.com",
+          "label": "Email Address",
+          "hint": "Enter your email",
           "initialValue": ""
         },
         {
@@ -34,18 +75,25 @@ val testData = """
           "isChecked": false
         },
         {
+          "type": "Slider",
+          "id": "prioritySlider",
+          "min": 1,
+          "max": 5,
+          "initialValue": 3
+        },
+        {
           "type": "Row",
-          "id": "buttonRow",
+          "id": "actionRow",
           "children": [
             {
               "type": "Button",
               "id": "submitButton",
-              "label": "Register",
-              "style": "primaryButton",
+              "label": "Submit",
+              "style": "tertiaryButton",
               "onClickAction": {
                 "type": "SubmitData",
                 "formData": {
-                  "name": "nameField",
+                  "name": "userNameField",
                   "email": "emailField",
                   "termsAccepted": "termsCheckBox"
                 }
@@ -55,13 +103,47 @@ val testData = """
               "type": "Button",
               "id": "cancelButton",
               "label": "Cancel",
-              "style": "secondaryButton",
+              "style": "outlinedButton",
               "onClickAction": {
-                "type": "Navigate",
-                "destination": "HomeScreen"
+                "type": "NoAction"
               }
             }
           ]
+        },
+        {
+          "type": "Text",
+          "id": "footerText",
+          "content": "Thank you for using our app!",
+          "style": "secondaryContent"
+        },
+        {
+          "type": "RadioButton",
+          "id": "red",
+          "label": "Red",
+          "isSelected": false
+        },
+        {
+          "type": "Switch",
+          "id": "botSetting",
+          "label": "Enable bot",
+          "isChecked": true
+        },
+        {
+          "type": "Divider",
+          "id": "startDivider",
+          "direction": "horizontal",
+          "thickness": 1
+        },
+        {
+          "type": "Spacer",
+          "id": "space",
+          "height": 32
+        },
+        {
+          "type": "Divider",
+          "id": "endDivider",
+          "direction": "horizontal",
+          "thickness": 1
         }
       ]
     }

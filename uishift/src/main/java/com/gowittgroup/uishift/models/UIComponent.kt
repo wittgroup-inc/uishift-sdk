@@ -24,7 +24,10 @@ sealed class UIComponent {
     @JsonClass(generateAdapter = true)
     data class ImageComponent(
         val url: String,
+        val width: Int? = null,
+        val height: Int? = null,
         val description: String,
+        val scaleType: ScaleType = ScaleType.FIT,
         override val id: String
     ) : UIComponent()
 
