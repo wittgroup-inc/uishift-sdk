@@ -9,12 +9,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.gowittgroup.uishift.ScreenRenderingEngine
-import com.gowittgroup.uishift.sample.lib.dashBoardJsonConfig
-import com.gowittgroup.uishift.sample.lib.registrationJsonConfig
-import com.gowittgroup.uishift.sample.lib.sampleConfigJson
+import com.gowittgroup.uishift.UiShift
+import com.gowittgroup.uishift.sample.sampledata.sampleConfigJson
 import com.gowittgroup.uishift.sample.theme.UIShiftTheme
+import com.gowittgroup.uishift.theme.lightColorScheme
 
+/**
+ *  val colorScheme = lightColorScheme(primaryButtonBackground = Color.Red)
+ *  UiShift.initialize(colorScheme = colorScheme)
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

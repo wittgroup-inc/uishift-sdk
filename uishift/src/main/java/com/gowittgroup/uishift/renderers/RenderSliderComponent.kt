@@ -2,7 +2,6 @@ package com.gowittgroup.uishift.renderers
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -11,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.gowittgroup.uishift.ScreenState
+import com.gowittgroup.uishift.components.UiShiftSlider
 import com.gowittgroup.uishift.models.UIComponent
 
 @Composable
@@ -24,8 +24,9 @@ fun RenderSliderComponent(
         )
     }
     Column {
-        Slider(
+        UiShiftSlider(
             value = sliderValue,
+            isEnabled = component.isEnabled,
             onValueChange = { value ->
                 sliderValue = value
                 screenState.updateSliderState(component.id, value)

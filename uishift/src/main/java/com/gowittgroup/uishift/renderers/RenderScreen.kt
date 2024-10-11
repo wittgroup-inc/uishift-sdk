@@ -1,6 +1,6 @@
 package com.gowittgroup.uishift.renderers
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import com.gowittgroup.uishift.ScreenState
 import com.gowittgroup.uishift.models.ScreenConfiguration

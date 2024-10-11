@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gowittgroup.uishift.components.UiShiftText
 import com.gowittgroup.uishift.models.UIComponent
-import com.gowittgroup.uishift.theme.UiShiftText
 
 @Composable
 fun RenderTextComponent(component: UIComponent.TextComponent) {

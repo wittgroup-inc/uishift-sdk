@@ -57,10 +57,8 @@ dependencies {
     ksp(libs.moshi.kotlin.codegen)
     implementation(libs.coil.compose)
 
-
     implementation(libs.json.org.everit.json.schema)
     implementation(libs.json)
-
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -69,6 +67,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-
 }
