@@ -145,6 +145,28 @@ The following actions can be performed in response to UI events:
 
 ## Styles Overview
 
+### Theme 
+
+- Theme is configurable, can be configured as below.
+
+```kotlin
+        
+        val colorScheme = UiShiftColorScheme(primaryButtonBackground = Color.LightGray)
+        val typography = UiShiftTypography(
+            mainTitle = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Bold,
+                fontSize = 30.sp,
+                letterSpacing = 0.sp
+            )
+        )
+        UiShift.initialize(
+            colorScheme = colorScheme,
+            typography = typography
+        )
+```
+- Note: Available pre-defined color schemes are lightColorScheme() or darkColorScheme, defaults to lightColorScheme, but developer define their own color schemes as well.
+
 ### Button Styles
 
 - **primaryButton**: Default primary button style.
