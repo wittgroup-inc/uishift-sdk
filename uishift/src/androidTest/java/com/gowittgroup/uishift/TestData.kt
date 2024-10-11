@@ -1,7 +1,7 @@
 package com.gowittgroup.uishift
 
 val testData = """
-   {
+{
   "components": [
     {
       "type": "Column",

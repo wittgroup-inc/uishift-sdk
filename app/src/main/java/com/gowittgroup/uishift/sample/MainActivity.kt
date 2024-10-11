@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.gowittgroup.uishift.ScreenRenderingEngine
-import com.gowittgroup.uishift.sample.lib.sampleConfigJson
+import com.gowittgroup.uishift.sample.sampledata.sampleConfigJson
 import com.gowittgroup.uishift.sample.theme.UIShiftTheme
 
 class MainActivity : ComponentActivity() {

@@ -1,6 +1,6 @@
 package com.gowittgroup.uishift.schema
 
-val testData = """
+val schemaSampleData = """
 {
   "components": [
     {

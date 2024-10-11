@@ -1,6 +1,6 @@
-package com.gowittgroup.uishift.sample.lib
+package com.gowittgroup.uishift.sample.sampledata
 
-val registrationJsonConfig = """
+val registrationSampleJsonConfig = """
 {
   "components": [
     {
@@ -67,10 +67,9 @@ val registrationJsonConfig = """
     }
   ]
 }
-
 """.trimIndent()
 
-val dashBoardJsonConfig = """
+val dashBoardSampleJsonConfig = """
 {
   "components": [
     {
@@ -135,11 +134,10 @@ val dashBoardJsonConfig = """
     }
   ]
 }
-
 """
 
 val sampleConfigJson = """
-   {
+{
   "components": [
     {
       "type": "Column",
