@@ -1,6 +1,6 @@
-package com.gowittgroup.uishift.sample.lib
+package com.gowittgroup.uishift.sample.sampledata
 
-val registrationJsonConfig = """
+val registrationSampleJsonConfig = """
 {
   "components": [
     {
@@ -67,10 +67,9 @@ val registrationJsonConfig = """
     }
   ]
 }
-
 """.trimIndent()
 
-val dashBoardJsonConfig = """
+val dashBoardSampleJsonConfig = """
 {
   "components": [
     {
@@ -135,11 +134,10 @@ val dashBoardJsonConfig = """
     }
   ]
 }
-
 """
 
 val sampleConfigJson = """
-   {
+{
   "components": [
     {
       "type": "Column",
@@ -161,6 +159,8 @@ val sampleConfigJson = """
         {
           "type": "Image",
           "id": "appImage",
+          "height": 200,
+          "scaleType": "crop",
           "url": "https://picsum.photos/id/237/200/300",
           "description": "App screenshot"
         },
@@ -205,9 +205,9 @@ val sampleConfigJson = """
           "initialValue": ""
         },
         {
-          "type": "CheckBox",
+          "type": "Checkbox",
           "id": "termsCheckBox",
-          "label": "I agree to the terms and conditions",
+          "label": "I accept the terms and conditions",
           "isChecked": false
         },
         {
@@ -251,10 +251,38 @@ val sampleConfigJson = """
           "id": "footerText",
           "content": "Thank you for using our app!",
           "style": "secondaryContent"
+        },
+        {
+          "type": "RadioButton",
+          "id": "red",
+          "label": "Red",
+          "isSelected": false
+        },
+        {
+          "type": "Switch",
+          "id": "botSetting",
+          "label": "Enable bot",
+          "isChecked": true
+        },
+        {
+          "type": "Divider",
+          "id": "startDivider",
+          "direction": "horizontal",
+          "thickness": 1
+        },
+        {
+          "type": "Spacer",
+          "id": "space",
+          "height": 32
+        },
+        {
+          "type": "Divider",
+          "id": "endDivider",
+          "direction": "horizontal",
+          "thickness": 1
         }
       ]
     }
   ]
 }
-
 """.trimIndent()

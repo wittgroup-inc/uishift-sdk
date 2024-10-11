@@ -160,7 +160,7 @@ val schemaString = """
 
 
 fun main() {
-    validateJson(schemaString, testData)
+    validateJson(schemaString, schemaSampleData)
 }
 
 // TODO: Work in progress
