@@ -91,7 +91,7 @@ sealed class UIComponent {
     @JsonClass(generateAdapter = true)
     data class DividerComponent(
         val thickness: Int = 1,
-        val direction: Direction,
+        val direction: Direction = Direction.HORIZONTAL,
         val color: String = "#000000",
         override val id: String
     ) : UIComponent()

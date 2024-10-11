@@ -13,6 +13,7 @@ The following UI components are available for use in your configuration document
 ### 1. TextComponent
 
 - **Properties**:
+  - `type`: String (Has fixed value `Text`)
   - `content`: String (The text to display)
   - `style`: String (The style token to apply)
   - `id`: String (Unique identifier)
@@ -20,21 +21,28 @@ The following UI components are available for use in your configuration document
 ### 2. ButtonComponent
 
 - **Properties**:
+  - `type`: String (Has fixed value `Button`)
   - `label`: String (The label displayed on the button)
   - `style`: String (The style token for button appearance)
+  - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
   - `onClickAction`: Action (The action to perform when clicked)
   - `id`: String (Unique identifier)
 
 ### 3. ImageComponent
 
 - **Properties**:
+  - `type`: String (Has fixed value `Image`)
   - `url`: String (The URL of the image)
+  - `height`: Int (Height of the image)
+  - `width`: Int (Width of the image)
+  - `scaleType`: String (How image should scale, value can be `crop` or `fit` or `fillBounds`. defaults to `fit` )
   - `description`: String (Description of the image)
   - `id`: String (Unique identifier)
 
 ### 4. ColumnComponent
 
 - **Properties**:
+  - `type`: String (Has fixed value `Column`)
   - `children`: List<UIComponent> (List of child components)
   - `isScrollable`: Boolean (Default value `false`)
   - `id`: String (Unique identifier)
@@ -42,6 +50,7 @@ The following UI components are available for use in your configuration document
 ### 5. RowComponent
 
 - **Properties**:
+  - `type`: String (Has fixed value `Row`)
   - `children`: List<UIComponent> (List of child components)
   - `isScrollable`: Boolean (Default value `false`)
   - `id`: String (Unique identifier)
@@ -49,29 +58,66 @@ The following UI components are available for use in your configuration document
 ### 6. TextFieldComponent
 
 - **Properties**:
+  - `type`: String (Has fixed value `TextField`)
   - `label`: String (The label for the text field)
   - `hint`: String (The hint text shown inside the text field)
+  - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
+  - `readOnly`: Boolean (Whether editable, defaults to `true`)
   - `initialValue`: String (The default value, defaults to empty)
   - `id`: String (Unique identifier)
 
 ### 7. CheckBoxComponent
 
 - **Properties**:
+  - `type`: String (Has fixed value `Checkbox`)
   - `label`: String (The label for the checkbox)
+  - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
   - `isChecked`: Boolean (Whether the checkbox is checked, defaults to false)
   - `id`: String (Unique identifier)
 
 ### 8. SliderComponent
 
 - **Properties**:
+  - `type`: String (Has fixed value `Slider`)
   - `min`: Float (Minimum value of the slider)
   - `max`: Float (Maximum value of the slider)
+  - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
   - `initialValue`: Float (Initial value of the slider)
   - `id`: String (Unique identifier)
 
-### 9. Unknown Component
+### 9. RadioButton
 
 - **Properties**:
+  - `type`: String (Has fixed value `RadioButton`)
+  - `label`: String (The label for the radio button)
+  - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
+  - `isSelected`: Boolean (Whether the radio button is selected, defaults to false)
+  - `id`: String (Unique identifier)
+
+### 10. Switch
+
+- **Properties**:
+  - `type`: String (Has fixed value `Switch`)
+  - `label`: String (The label for the switch)
+  - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
+  - `isChecked`: Boolean (Whether the switch is checked, defaults to false)
+  - `id`: String (Unique identifier)
+
+### 11. Divider
+
+- **Properties**:
+  - `type`: String (Has fixed value `Divider`)
+  - `direction`: String (direction for the divider, value can be `horizontal` or `vertical`, defaults to `horizontal`)
+  - `thickness`: Int (Thickness of divider, defaults to 1)
+  - `color`: String (Color of divider, can be any hexadecimal color code, default to `#000000`)
+  - `id`: String (Unique identifier)
+
+### 12. Spacer
+
+- **Properties**:
+  - `type`: String (Has fixed value `Spacer`)
+  - `label`: String (The label for the switch)
+  - `height`: Int (Height of spacer)
   - `id`: String (Unique identifier)
 
 ## Actions Overview
