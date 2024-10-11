@@ -5,43 +5,33 @@ import com.gowittgroup.uishift.models.Action
 
 class ScreenState {
     // Maintain the state of text fields, checkboxes, and sliders using a map
-    val textFieldsState: MutableMap<String?, String> = mutableMapOf()
-    val checkBoxState: MutableMap<String?, Boolean> = mutableMapOf()
-    val radioButtonState: MutableMap<String?, Boolean> = mutableMapOf()
-    val switchState: MutableMap<String?, Boolean> = mutableMapOf()
-    val sliderState: MutableMap<String?, Float> = mutableMapOf()
+    val textFieldsState: MutableMap<String, String> = mutableMapOf()
+    val checkBoxState: MutableMap<String, Boolean> = mutableMapOf()
+    val radioButtonState: MutableMap<String, Boolean> = mutableMapOf()
+    val switchState: MutableMap<String, Boolean> = mutableMapOf()
+    val sliderState: MutableMap<String, Float> = mutableMapOf()
 
     // Function to update text field state
-    fun updateTextFieldState(id: String?, value: String) {
-        if (id != null) {
-            textFieldsState[id] = value
-        }
+    fun updateTextFieldState(id: String, value: String) {
+        textFieldsState[id] = value
     }
 
     // Function to update checkbox state
-    fun updateCheckBoxState(id: String?, isChecked: Boolean) {
-        if (id != null) {
-            checkBoxState[id] = isChecked
-        }
+    fun updateCheckBoxState(id: String, isChecked: Boolean) {
+        checkBoxState[id] = isChecked
     }
 
-    fun updateRadioButtonState(id: String?, isChecked: Boolean) {
-        if (id != null) {
-            radioButtonState[id] = isChecked
-        }
+    fun updateRadioButtonState(id: String, isChecked: Boolean) {
+        radioButtonState[id] = isChecked
     }
 
-    fun updateSwitchState(id: String?, isChecked: Boolean) {
-        if (id != null) {
-            switchState[id] = isChecked
-        }
+    fun updateSwitchState(id: String, isChecked: Boolean) {
+        switchState[id] = isChecked
     }
 
     // Function to update slider state
-    fun updateSliderState(id: String?, value: Float) {
-        if (id != null) {
-            sliderState[id] = value
-        }
+    fun updateSliderState(id: String, value: Float) {
+        sliderState[id] = value
     }
 
     fun onButtonClick(action: Action.SubmitData) {
@@ -73,7 +63,7 @@ class ScreenState {
 
     private fun submitForm(data: Map<String, String>) {
         // Logic to submit the form, e.g., making an API call
-        Log.d("ScreenState", "Submitting form data: ${data}")
+        Log.d("ScreenState", "Submitting form data: $data")
     }
 
 

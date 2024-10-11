@@ -17,6 +17,7 @@ sealed class UIComponent {
         val style: String,
         val label: String,
         val onClickAction: Action,
+        val isEnabled: Boolean = true,
         override val id: String
     ) : UIComponent()
 
@@ -46,6 +47,8 @@ sealed class UIComponent {
         val label: String,
         val hint: String,
         val initialValue: String = "",
+        val isEnabled: Boolean = true,
+        val readOnly: Boolean = false,
         override val id: String
     ) : UIComponent()
 
@@ -53,6 +56,7 @@ sealed class UIComponent {
     data class CheckBoxComponent(
         val label: String,
         val isChecked: Boolean = false,
+        val isEnabled: Boolean = true,
         override val id: String
     ) : UIComponent()
 
@@ -61,6 +65,7 @@ sealed class UIComponent {
         val min: Float,
         val max: Float,
         val initialValue: Float,
+        val isEnabled: Boolean = true,
         override val id: String
     ) : UIComponent()
 
@@ -68,6 +73,7 @@ sealed class UIComponent {
     data class SwitchComponent(
         val label: String,
         val isChecked: Boolean,
+        val isEnabled: Boolean = true,
         override val id: String
     ) : UIComponent()
 
@@ -75,6 +81,7 @@ sealed class UIComponent {
     data class RadioButtonComponent(
         val label: String,
         val isSelected: Boolean,
+        val isEnabled: Boolean = true,
         override val id: String
     ) : UIComponent()
 

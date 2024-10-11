@@ -10,8 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.gowittgroup.uishift.ScreenState
-import com.gowittgroup.uishift.models.UIComponent
 import com.gowittgroup.uishift.components.UiShiftSlider
+import com.gowittgroup.uishift.models.UIComponent
 
 @Composable
 fun RenderSliderComponent(
@@ -26,6 +26,7 @@ fun RenderSliderComponent(
     Column {
         UiShiftSlider(
             value = sliderValue,
+            isEnabled = component.isEnabled,
             onValueChange = { value ->
                 sliderValue = value
                 screenState.updateSliderState(component.id, value)

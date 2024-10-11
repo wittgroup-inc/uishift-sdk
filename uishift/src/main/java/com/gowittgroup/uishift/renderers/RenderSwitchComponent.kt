@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.gowittgroup.uishift.ScreenState
-import com.gowittgroup.uishift.models.UIComponent
 import com.gowittgroup.uishift.components.UiShiftSwitch
+import com.gowittgroup.uishift.models.UIComponent
 
 @Composable
 fun RenderSwitchComponent(
@@ -24,9 +24,10 @@ fun RenderSwitchComponent(
     ) {
         Text(component.label)
         UiShiftSwitch(
+            isEnabled = component.isEnabled,
             checked = isChecked,
             onCheckedChange = {
-                screenState.updateSwitchState(component.id, it)
+                screenState.updateSwitchState(component.id, !isChecked)
             }
         )
 

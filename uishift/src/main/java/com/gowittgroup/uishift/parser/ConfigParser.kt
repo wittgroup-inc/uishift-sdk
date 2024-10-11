@@ -2,8 +2,8 @@ package com.gowittgroup.uishift.parser
 
 import com.gowittgroup.uishift.constants.ActionType
 import com.gowittgroup.uishift.constants.ComponentType
-import com.gowittgroup.uishift.models.ScreenConfiguration
 import com.gowittgroup.uishift.models.Action
+import com.gowittgroup.uishift.models.ScreenConfiguration
 import com.gowittgroup.uishift.models.UIComponent
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory

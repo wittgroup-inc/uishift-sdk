@@ -13,10 +13,16 @@ fun UiShiftTextField(
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
     label: String,
-    hint: String
+    hint: String,
+    isEnabled: Boolean = true,
+    readOnly: Boolean = false,
+    isError: Boolean = false
 ) {
     TextField(
         value = value,
+        enabled = isEnabled,
+        readOnly = readOnly,
+        isError = isError,
         onValueChange = onValueChange,
         label = {
             Text(

@@ -69,8 +69,8 @@ class UiShiftColorScheme(
 
     // Slider Colors
     val sliderTrackColor: Color = Color(0xFF007AFF),  // Slider track color
-    val sliderThumbColor: Color = Color.White,  // Slider thumb color
-    val sliderDisabledTrackColor: Color = Color.Gray,  // Slider track color when disabled
+    val sliderThumbColor: Color = Color(0xFF007AFF),  // Slider thumb color
+    val sliderDisabledTrackColor: Color = Color.LightGray,  // Slider track color when disabled
     val sliderDisabledThumbColor: Color = Color.LightGray,  // Slider thumb color when disabled
 
     // Primary Container Colors

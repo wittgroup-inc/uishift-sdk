@@ -3,9 +3,9 @@ package com.gowittgroup.uishift.renderers
 import android.util.Log
 import androidx.compose.runtime.Composable
 import com.gowittgroup.uishift.ScreenState
+import com.gowittgroup.uishift.components.UiShiftButton
 import com.gowittgroup.uishift.models.Action
 import com.gowittgroup.uishift.models.UIComponent
-import com.gowittgroup.uishift.components.UiShiftButton
 
 @Composable
 fun RenderButtonComponent(
@@ -15,6 +15,7 @@ fun RenderButtonComponent(
     UiShiftButton(
         token = component.style,
         label = component.label,
+        isEnabled = component.isEnabled,
         onClick = {
             when (val action = component.onClickAction) {
                 is Action.Navigate -> {

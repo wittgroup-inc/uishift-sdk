@@ -5,7 +5,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,17 +15,17 @@ import com.gowittgroup.uishift.constants.ButtonStyleToken
 import com.gowittgroup.uishift.theme.ThemeConfig.colorScheme
 
 
-
-
 @Composable
 fun UiShiftButton(
     token: String,
     label: String,
+    isEnabled: Boolean = true,
     onClick: () -> Unit
 ) {
     when (token) {
         ButtonStyleToken.PRIMARY_BUTTON -> {
             Button(
+                enabled = isEnabled,
                 onClick = onClick,
                 modifier = Modifier.padding(8.dp),
                 colors = ButtonDefaults.buttonColors(
