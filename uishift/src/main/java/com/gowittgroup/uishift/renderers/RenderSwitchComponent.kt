@@ -11,18 +11,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.gowittgroup.uishift.ScreenState
+import com.gowittgroup.uishift.screen.ScreenState
 import com.gowittgroup.uishift.components.UiShiftSwitch
 import com.gowittgroup.uishift.models.UIComponent
 
 @Composable
 fun RenderSwitchComponent(
     screenState: ScreenState,
-    component: UIComponent.SwitchComponent
+    component: UIComponent.SwitchComponent,
+    onCheckedChange: (Boolean) -> Unit
 ) {
     var isChecked by remember {
         mutableStateOf(false)
     }
+
     isChecked = screenState.switchState[component.id] ?: component.isChecked
 
     Row(
@@ -34,10 +36,7 @@ fun RenderSwitchComponent(
         UiShiftSwitch(
             isEnabled = component.isEnabled,
             checked = isChecked,
-            onCheckedChange = {
-                isChecked = !isChecked
-                screenState.updateSwitchState(component.id, isChecked)
-            }
+            onCheckedChange = onCheckedChange
         )
 
     }

@@ -8,14 +8,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import com.gowittgroup.uishift.ScreenState
+import com.gowittgroup.uishift.screen.ScreenState
 import com.gowittgroup.uishift.components.UiShiftRadioButton
 import com.gowittgroup.uishift.models.UIComponent
 
 @Composable
 fun RenderRadioButtonComponent(
     screenState: ScreenState,
-    component: UIComponent.RadioButtonComponent
+    component: UIComponent.RadioButtonComponent,
+    onClick: () -> Unit
 ) {
     var isSelected by remember {
         mutableStateOf(false)
@@ -26,10 +27,7 @@ fun RenderRadioButtonComponent(
         UiShiftRadioButton(
             isEnabled = component.isEnabled,
             selected = isSelected,
-            onClick = {
-                isSelected = !isSelected
-                screenState.updateRadioButtonState(component.id, isSelected)
-            }
+            onClick = onClick
         )
         Text(component.label)
     }

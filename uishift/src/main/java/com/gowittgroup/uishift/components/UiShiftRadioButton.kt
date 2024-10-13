@@ -8,8 +8,8 @@ import com.gowittgroup.uishift.theme.ThemeConfig.colorScheme
 @Composable
 fun UiShiftRadioButton(
     selected: Boolean,
-    onClick: () -> Unit,
-    isEnabled: Boolean = true
+    isEnabled: Boolean = true,
+    onClick: () -> Unit
 ) {
     RadioButton(
         selected = selected,

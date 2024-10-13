@@ -9,28 +9,29 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.gowittgroup.uishift.ScreenState
+import com.gowittgroup.uishift.screen.ScreenState
 import com.gowittgroup.uishift.components.UiShiftSlider
 import com.gowittgroup.uishift.models.UIComponent
 
 @Composable
 fun RenderSliderComponent(
     screenState: ScreenState,
-    component: UIComponent.SliderComponent
+    component: UIComponent.SliderComponent,
+    onValueChange: (Float) -> Unit
 ) {
     var sliderValue by remember {
         mutableFloatStateOf(
             screenState.sliderState[component.id] ?: component.initialValue
         )
     }
+
+    sliderValue = screenState.sliderState[component.id] ?: component.initialValue
+
     Column {
         UiShiftSlider(
             value = sliderValue,
             isEnabled = component.isEnabled,
-            onValueChange = { value ->
-                sliderValue = value
-                screenState.updateSliderState(component.id, value)
-            },
+            onValueChange = onValueChange,
             valueRange = component.min..component.max,
             modifier = Modifier.fillMaxWidth()
         )

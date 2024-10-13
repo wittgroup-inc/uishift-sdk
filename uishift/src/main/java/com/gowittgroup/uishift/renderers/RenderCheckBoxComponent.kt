@@ -8,14 +8,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import com.gowittgroup.uishift.ScreenState
+import com.gowittgroup.uishift.screen.ScreenState
 import com.gowittgroup.uishift.components.UiShiftCheckBox
 import com.gowittgroup.uishift.models.UIComponent
 
 @Composable
 fun RenderCheckBoxComponent(
     screenState: ScreenState,
-    component: UIComponent.CheckBoxComponent
+    component: UIComponent.CheckBoxComponent,
+    onCheckedChange: (Boolean) -> Unit
 ) {
     var isChecked by remember {
         mutableStateOf(false)
@@ -25,10 +26,7 @@ fun RenderCheckBoxComponent(
         UiShiftCheckBox(
             isEnabled = component.isEnabled,
             checked = isChecked,
-            onCheckedChange = {
-                isChecked = !isChecked
-                screenState.updateCheckBoxState(component.id, isChecked)
-            }
+            onCheckedChange = onCheckedChange
         )
         Text(component.label)
     }
