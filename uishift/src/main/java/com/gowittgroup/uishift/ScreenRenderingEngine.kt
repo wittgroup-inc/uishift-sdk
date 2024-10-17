@@ -9,6 +9,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -16,13 +17,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.gowittgroup.uishift.renderers.RenderScreen
+import com.gowittgroup.uishift.screen.NavigationEvent
 import com.gowittgroup.uishift.screen.ScreenConfigState
 import com.gowittgroup.uishift.screen.ScreenViewModel
 
 @Composable
-fun ScreenRenderingEngine(viewModel: ScreenViewModel) {
+fun ScreenRenderingEngine(viewModel: ScreenViewModel, navController: NavController) {
 
+    val navigationEvent by viewModel.navigationEvents.collectAsState(initial = null)
+    // Handle navigation events
+    LaunchedEffect(navigationEvent) {
+        when (navigationEvent) {
+            is NavigationEvent.NavigateTo -> {
+                val destination = (navigationEvent as NavigationEvent.NavigateTo).destination
+                navController.navigate(destination)
+            }
+            NavigationEvent.NavigateUp -> {
+                navController.navigateUp()
+            }
+            null -> {
+                // No action needed
+            }
+        }
+    }
 
     val screenConfigState by viewModel.screenConfigState.collectAsState()
 

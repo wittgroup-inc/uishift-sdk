@@ -16,7 +16,7 @@ sealed class UIComponent {
     data class ButtonComponent(
         val style: String,
         val label: String,
-        val onClickAction: Action,
+        val onClickAction: ActionFlow,
         val isEnabled: Boolean = true,
         override val id: String
     ) : UIComponent()

@@ -42,13 +42,16 @@ val registrationSampleJsonConfig = """
               "id": "submitButton",
               "label": "Register",
               "style": "primaryButton",
-              "onClickAction": {
-                "type": "SubmitData",
-                "formData": {
-                  "name": "nameField",
-                  "email": "emailField",
-                  "termsAccepted": "termsCheckBox"
+              "onClickAction" : {
+                "type": "Sequence",
+                "action": {
+                    "type": "ApiRequest",
+                    "requestModel": {
+                    
+                    }
+                    
                 }
+              
               }
             },
             {
@@ -56,10 +59,6 @@ val registrationSampleJsonConfig = """
               "id": "cancelButton",
               "label": "Cancel",
               "style": "secondaryButton",
-              "onClickAction": {
-                "type": "Navigate",
-                "destination": "HomeScreen"
-              }
             }
           ]
         }
@@ -67,6 +66,7 @@ val registrationSampleJsonConfig = """
     }
   ]
 }
+
 """.trimIndent()
 
 val dashBoardSampleJsonConfig = """

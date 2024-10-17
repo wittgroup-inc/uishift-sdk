@@ -18,3 +18,15 @@ class ConfigRepositoryImpl(private val jsonConfiguration: String) : ConfigReposi
     }
 
 }
+
+class ConfigRepositoryImpl2(private val screenConfiguration: ScreenConfiguration? = null) :
+    ConfigRepository {
+    override suspend fun fetchScreenConfiguration(): Result<ScreenConfiguration> {
+
+        return if (screenConfiguration != null)
+            Result.Success(screenConfiguration)
+        else
+            Result.Error(RuntimeException("Parsing error"))
+    }
+
+}
