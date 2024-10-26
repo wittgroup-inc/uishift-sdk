@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import com.gowittgroup.uishift.renderers.RenderScreen
 import com.gowittgroup.uishift.screen.NavigationEvent
@@ -28,17 +29,21 @@ fun ScreenRenderingEngine(viewModel: ScreenViewModel, navController: NavControll
 
     val navigationEvent by viewModel.navigationEvents.collectAsState(initial = null)
     // Handle navigation events
-    LaunchedEffect(navigationEvent) {
-        when (navigationEvent) {
-            is NavigationEvent.NavigateTo -> {
-                val destination = (navigationEvent as NavigationEvent.NavigateTo).destination
-                navController.navigate(destination)
-            }
-            NavigationEvent.NavigateUp -> {
-                navController.navigateUp()
-            }
-            null -> {
-                // No action needed
+    navigationEvent?.let { navEvent ->
+        LaunchedEffect(navEvent) {
+            when (navEvent) {
+                is NavigationEvent.NavigateTo -> {
+                    val destination = navEvent.destination
+                    navController.navigate(destination)
+                }
+
+                NavigationEvent.NavigateUp -> {
+                    navController.navigateUp()
+                }
+
+                is NavigationEvent.ShowMessage -> {
+                    navEvent.message
+                }
             }
         }
     }

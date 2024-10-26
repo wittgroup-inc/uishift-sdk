@@ -11,5 +11,6 @@ import com.gowittgroup.uishift.models.UIComponent
 fun RenderSpacerComponent(
     component: UIComponent.SpacerComponent
 ) {
-    Spacer(modifier = Modifier.height(component.height.dp))
+    val spacerHeight = component.height?.dp ?: 16.dp
+    Spacer(modifier = Modifier.height(spacerHeight))
 }

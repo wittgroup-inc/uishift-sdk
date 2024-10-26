@@ -159,7 +159,7 @@ class ScreenViewModel(
             is Validation.Binary -> validateBoolean(value, validation)
             is Validation.Numeric -> validateNumeric(value, validation)
             is Validation.Selection -> validateSelection(value, validation)
-            Validation.None -> true
+            is Validation.None -> true
         }
         Log.d(TAG, "Validation result for field ${fieldId.id}: $isValid")
         return isValid
@@ -210,11 +210,14 @@ class ScreenViewModel(
                 val response: ApiResponse<Any> = apiRepository.performRequest(request)
                 if (response.success) {
                     Log.d(TAG, "API request successful: ${response.data}")
+                    _navigationEventChannel.send(NavigationEvent.ShowMessage("Success!"))
                 } else {
                     Log.e(TAG, "API request failed: ${response.message ?: "Unknown error"}")
+                    _navigationEventChannel.send(NavigationEvent.ShowMessage(response.message ?: "Request Failed"))
                 }
             } catch (e: Exception) {
                 Log.e(TAG, "API request error: ${e.message}")
+                _navigationEventChannel.send(NavigationEvent.ShowMessage("Request Error"))
             }
         }
     }
@@ -234,5 +237,6 @@ class ScreenViewModel(
 
 sealed class NavigationEvent {
     data class NavigateTo(val destination: String) : NavigationEvent()
-    object NavigateUp : NavigationEvent()
+    data class ShowMessage(val message: String) : NavigationEvent()
+    data object NavigateUp : NavigationEvent()
 }

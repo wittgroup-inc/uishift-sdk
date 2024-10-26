@@ -6,4 +6,6 @@ object ValidationType {
     const val BOOLEAN = "BooleanValidation"
     const val NUMERIC = "NumericValidation"
     const val SELECTION = "SelectionValidation"
+    const val CUSTOM = "CustomValidation"
+    const val NONE = "None"
 }

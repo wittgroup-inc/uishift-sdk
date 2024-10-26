@@ -11,7 +11,9 @@ import com.gowittgroup.uishift.models.Request
 import com.gowittgroup.uishift.models.ScreenConfiguration
 import com.gowittgroup.uishift.models.UIComponent
 import com.gowittgroup.uishift.models.Validation
+import com.squareup.moshi.FromJson
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.ToJson
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
@@ -65,7 +67,7 @@ class ConfigParser {
                 .withSubtype(Validation.Text::class.java, ValidationType.TEXT)
                 .withSubtype(Validation.Binary::class.java, ValidationType.BOOLEAN)
                 .withSubtype(Validation.Numeric::class.java, ValidationType.NUMERIC)
-                .withDefaultValue(Validation.None)
+                .withSubtype(Validation.None::class.java, ValidationType.NONE)  // Instantiate the data class here
         )
         .add(KotlinJsonAdapterFactory())
         .build()
