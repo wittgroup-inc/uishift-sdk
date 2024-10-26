@@ -1,19 +1,18 @@
 package com.gowittgroup.uishift.parser
 
+
 import com.gowittgroup.uishift.constants.ActionFlowType
 import com.gowittgroup.uishift.constants.ActionType
 import com.gowittgroup.uishift.constants.ComponentType
 import com.gowittgroup.uishift.constants.RequestType
 import com.gowittgroup.uishift.constants.ValidationType
-import com.gowittgroup.uishift.models.Action
-import com.gowittgroup.uishift.models.ActionFlow
-import com.gowittgroup.uishift.models.Request
 import com.gowittgroup.uishift.models.ScreenConfiguration
-import com.gowittgroup.uishift.models.UIComponent
-import com.gowittgroup.uishift.models.Validation
-import com.squareup.moshi.FromJson
+import com.gowittgroup.uishift.models.components.*
+import com.gowittgroup.uishift.models.properties.Action
+import com.gowittgroup.uishift.models.properties.ActionFlow
+import com.gowittgroup.uishift.models.properties.Request
+import com.gowittgroup.uishift.models.properties.Validation
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.ToJson
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
@@ -21,27 +20,28 @@ private const val TYPE_LABEL_KEY = "type"
 
 class ConfigParser {
     val moshi = Moshi.Builder()
+        .add(SizeOptionAdapter())
         .add(
             PolymorphicJsonAdapterFactory.of(UIComponent::class.java, TYPE_LABEL_KEY)
-                .withSubtype(UIComponent.TextComponent::class.java, ComponentType.TEXT)
-                .withSubtype(UIComponent.ButtonComponent::class.java, ComponentType.BUTTON)
-                .withSubtype(UIComponent.ImageComponent::class.java, ComponentType.IMAGE)
-                .withSubtype(UIComponent.ColumnComponent::class.java, ComponentType.COLUMN)
-                .withSubtype(UIComponent.RowComponent::class.java, ComponentType.ROW)
+                .withSubtype(TextComponent::class.java, ComponentType.TEXT)
+                .withSubtype(ButtonComponent::class.java, ComponentType.BUTTON)
+                .withSubtype(ImageComponent::class.java, ComponentType.IMAGE)
+                .withSubtype(ColumnComponent::class.java, ComponentType.COLUMN)
+                .withSubtype(RowComponent::class.java, ComponentType.ROW)
                 .withSubtype(
-                    UIComponent.TextFieldComponent::class.java,
+                    TextFieldComponent::class.java,
                     ComponentType.TEXT_FIELD
                 )
-                .withSubtype(UIComponent.CheckBoxComponent::class.java, ComponentType.CHECKBOX)
-                .withSubtype(UIComponent.SliderComponent::class.java, ComponentType.SLIDER)
+                .withSubtype(CheckBoxComponent::class.java, ComponentType.CHECKBOX)
+                .withSubtype(SliderComponent::class.java, ComponentType.SLIDER)
                 .withSubtype(
-                    UIComponent.RadioButtonComponent::class.java,
+                    RadioButtonComponent::class.java,
                     ComponentType.RADIO_BUTTON
                 )
-                .withSubtype(UIComponent.SwitchComponent::class.java, ComponentType.SWITCH)
-                .withSubtype(UIComponent.DividerComponent::class.java, ComponentType.DIVIDER)
-                .withSubtype(UIComponent.SpacerComponent::class.java, ComponentType.SPACER)
-                .withDefaultValue(UIComponent.Unknown)
+                .withSubtype(SwitchComponent::class.java, ComponentType.SWITCH)
+                .withSubtype(DividerComponent::class.java, ComponentType.DIVIDER)
+                .withSubtype(SpacerComponent::class.java, ComponentType.SPACER)
+                .withDefaultValue(Unknown)
         )
         .add(
             PolymorphicJsonAdapterFactory.of(Action::class.java, TYPE_LABEL_KEY)

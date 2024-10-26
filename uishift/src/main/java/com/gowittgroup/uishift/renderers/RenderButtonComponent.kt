@@ -2,17 +2,20 @@ package com.gowittgroup.uishift.renderers
 
 import androidx.compose.runtime.Composable
 import com.gowittgroup.uishift.components.UiShiftButton
-import com.gowittgroup.uishift.models.UIComponent
+import com.gowittgroup.uishift.models.components.ButtonComponent
 
 @Composable
 fun RenderButtonComponent(
-    component: UIComponent.ButtonComponent,
+    component: ButtonComponent,
     onAction: () -> Unit
 ) {
-    UiShiftButton(
-        token = component.style,
-        label = component.label,
-        isEnabled = component.isEnabled,
-        onClick = onAction
-    )
+    RenderBaseProperties(component) { modifier ->
+        UiShiftButton(
+            token = component.style,
+            label = component.label,
+            isEnabled = component.isEnabled,
+            onClick = onAction,
+            modifier = modifier
+        )
+    }
 }

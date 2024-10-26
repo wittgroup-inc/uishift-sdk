@@ -1,6 +1,6 @@
-package com.gowittgroup.uishift
+package com.gowittgroup.uishift.network
 
-import com.gowittgroup.uishift.models.Request
+import com.gowittgroup.uishift.models.properties.Request
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap

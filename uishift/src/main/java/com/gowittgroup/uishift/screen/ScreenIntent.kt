@@ -1,8 +1,8 @@
 package com.gowittgroup.uishift.screen
 
-import com.gowittgroup.uishift.models.Field
-import com.gowittgroup.uishift.models.Request
-import com.gowittgroup.uishift.models.Validation
+import com.gowittgroup.uishift.models.properties.Field
+import com.gowittgroup.uishift.models.properties.Request
+import com.gowittgroup.uishift.models.properties.Validation
 
 sealed class ScreenIntent {
     data class UpdateTextField(val id: String, val value: String) : ScreenIntent()

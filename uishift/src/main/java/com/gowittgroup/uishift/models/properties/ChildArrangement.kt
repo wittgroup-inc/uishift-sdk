@@ -1,4 +1,4 @@
-package com.gowittgroup.uishift.models
+package com.gowittgroup.uishift.models.properties
 
 import com.squareup.moshi.JsonClass
 

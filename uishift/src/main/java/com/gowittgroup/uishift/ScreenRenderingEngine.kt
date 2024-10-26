@@ -17,15 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.gowittgroup.uishift.renderers.RenderScreen
 import com.gowittgroup.uishift.screen.NavigationEvent
 import com.gowittgroup.uishift.screen.ScreenConfigState
 import com.gowittgroup.uishift.screen.ScreenViewModel
 
 @Composable
-fun ScreenRenderingEngine(viewModel: ScreenViewModel, navController: NavController) {
+fun ScreenRenderingEngine(viewModel: ScreenViewModel, navController: NavController = rememberNavController()) {
 
     val navigationEvent by viewModel.navigationEvents.collectAsState(initial = null)
     // Handle navigation events

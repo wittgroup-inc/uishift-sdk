@@ -2,11 +2,11 @@ package com.gowittgroup.uishift.renderers
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import com.gowittgroup.uishift.models.components.*
+import com.gowittgroup.uishift.models.properties.Action
+import com.gowittgroup.uishift.models.properties.ActionFlow
 import com.gowittgroup.uishift.screen.ScreenIntent
 import com.gowittgroup.uishift.screen.ScreenState
-import com.gowittgroup.uishift.models.Action
-import com.gowittgroup.uishift.models.ActionFlow
-import com.gowittgroup.uishift.models.UIComponent
 
 private const val TAG = "RenderComponent"
 
@@ -19,34 +19,34 @@ fun RenderComponent(
     Log.d(TAG, "Rendering component: ${component::class.simpleName}")
 
     when (component) {
-        is UIComponent.TextComponent -> {
+        is TextComponent -> {
             Log.d(TAG, "Rendering TextComponent: ${component.content}")
             RenderTextComponent(component)
         }
 
-        is UIComponent.ButtonComponent -> {
+        is ButtonComponent -> {
             Log.d(TAG, "Rendering ButtonComponent with text: ${component.label}")
             RenderButtonComponent(component) {
                 handleActionFlow(component.onClickAction, onIntent)
             }
         }
 
-        is UIComponent.ImageComponent -> {
+        is ImageComponent -> {
             Log.d(TAG, "Rendering ImageComponent with url: ${component.url}")
             RenderImageComponent(component)
         }
 
-        is UIComponent.ColumnComponent -> {
+        is ColumnComponent -> {
             Log.d(TAG, "Rendering ColumnComponent")
             RenderColumnComponent(component, screenState, onIntent)
         }
 
-        is UIComponent.RowComponent -> {
+        is RowComponent -> {
             Log.d(TAG, "Rendering RowComponent")
             RenderRowComponent(component, screenState, onIntent)
         }
 
-        is UIComponent.TextFieldComponent -> {
+        is TextFieldComponent -> {
             Log.d(TAG, "Rendering TextFieldComponent with id: ${component.id}")
             RenderTextFieldComponent(
                 screenState = screenState,
@@ -58,7 +58,7 @@ fun RenderComponent(
             )
         }
 
-        is UIComponent.CheckBoxComponent -> {
+        is CheckBoxComponent -> {
             Log.d(TAG, "Rendering CheckBoxComponent with id: ${component.id}")
             RenderCheckBoxComponent(
                 screenState = screenState,
@@ -70,20 +70,26 @@ fun RenderComponent(
             )
         }
 
-        is UIComponent.RadioButtonComponent -> {
+        is RadioButtonComponent -> {
             Log.d(TAG, "Rendering RadioButtonComponent with id: ${component.id}")
             RenderRadioButtonComponent(
                 screenState = screenState,
                 component = component,
                 onClick = {
-                    val isSelected = screenState.radioButtonState.getOrDefault(component.id, component.isSelected)
-                    Log.d(TAG, "RadioButtonComponent id: ${component.id} changed to: ${!isSelected}")
+                    val isSelected = screenState.radioButtonState.getOrDefault(
+                        component.id,
+                        component.isSelected
+                    )
+                    Log.d(
+                        TAG,
+                        "RadioButtonComponent id: ${component.id} changed to: ${!isSelected}"
+                    )
                     onIntent(ScreenIntent.UpdateRadioButton(component.id, !isSelected))
                 }
             )
         }
 
-        is UIComponent.SwitchComponent -> {
+        is SwitchComponent -> {
             Log.d(TAG, "Rendering SwitchComponent with id: ${component.id}")
             RenderSwitchComponent(
                 screenState = screenState,
@@ -95,7 +101,7 @@ fun RenderComponent(
             )
         }
 
-        is UIComponent.SliderComponent -> {
+        is SliderComponent -> {
             Log.d(TAG, "Rendering SliderComponent with id: ${component.id}")
             RenderSliderComponent(
                 screenState = screenState,
@@ -107,26 +113,32 @@ fun RenderComponent(
             )
         }
 
-        is UIComponent.SpacerComponent -> {
+        is SpacerComponent -> {
             Log.d(TAG, "Rendering SpacerComponent")
             RenderSpacerComponent(component)
         }
 
-        is UIComponent.DividerComponent -> {
+        is DividerComponent -> {
             Log.d(TAG, "Rendering DividerComponent")
             RenderDividerComponent(component)
         }
 
-        else -> {
+        Unknown -> {
             Log.e(TAG, "Unknown component type: ${component::class.simpleName}")
         }
     }
 }
 
-fun handleActionFlow(actionFlow: ActionFlow, onIntent: (ScreenIntent) -> Unit) {
+fun handleActionFlow(
+    actionFlow: ActionFlow,
+    onIntent: (ScreenIntent) -> Unit
+) {
     when (actionFlow) {
         is ActionFlow.Sequence -> {
-            Log.d(TAG, "Handling action sequence with ${actionFlow.sequence.prefixes.size} prefixes, core, and ${actionFlow.sequence.postfixes.size} postfixes.")
+            Log.d(
+                TAG,
+                "Handling action sequence with ${actionFlow.sequence.prefixes.size} prefixes, core, and ${actionFlow.sequence.postfixes.size} postfixes."
+            )
             actionFlow.sequence.prefixes.forEach { action ->
                 Log.d(TAG, "Handling action prefix: $action")
                 onIntent(handleAction(action))
@@ -142,6 +154,8 @@ fun handleActionFlow(actionFlow: ActionFlow, onIntent: (ScreenIntent) -> Unit) {
             Log.d(TAG, "Handling single action: ${actionFlow.action}")
             onIntent(handleAction(actionFlow.action))
         }
+
+        else -> {}
     }
 }
 

@@ -1,4 +1,4 @@
-package com.gowittgroup.uishift
+package com.gowittgroup.uishift.network
 
 import com.squareup.moshi.JsonClass
 

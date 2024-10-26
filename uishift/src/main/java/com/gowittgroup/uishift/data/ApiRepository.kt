@@ -1,16 +1,20 @@
-package com.gowittgroup.uishift
+package com.gowittgroup.uishift.data
 
-import com.gowittgroup.uishift.models.Request
 import android.util.Log
+import com.gowittgroup.uishift.models.properties.Request
+import com.gowittgroup.uishift.network.ApiResponse
+import com.gowittgroup.uishift.network.ApiService
 
 
-class ApiRepository(private val apiService: ApiService) {
+class ApiRepository(private val apiService: ApiService? = null) {
 
     suspend fun performRequest(request: Request): ApiResponse<Any> {
         Log.i(
             "ApiRepository",
             "Starting API request with request type: ${request::class.simpleName}"
         )
+
+        if(apiService == null) return ApiResponse.failure(RuntimeException("Api Service Not Available"))
 
         return try {
             when (request) {
