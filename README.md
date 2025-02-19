@@ -2,16 +2,22 @@
 
 UIShift is an SDK designed to dynamically generate user interfaces using Jetpack Compose based on a configuration file. This document provides a detailed guide on how to create a `ScreenConfiguration` JSON document, including all available components, styles, actions, and example configurations.
 
+## Table of Contents
+- [Overview](#overview)
+- [Components Overview](#components-overview)
+- [ActionsFlow Overview](#actionsflow-overview)
+- [Objects Overview](#objects-overview)
+- [Validation Overview](#validation-overview)
+- [Styles Overview](#styles-overview)
+- [Creating a ScreenConfiguration JSON](#creating-a-screenconfiguration-jSON)
+  
 ## Overview
 
 UIShift allows developers to build flexible and dynamic user interfaces by defining UI components and their behaviors in a configuration file. By using Jetpack Compose, the SDK makes it easy to create rich, interactive UIs that adapt to changing data and user interactions.
 
-
-
-
 ## Components Overview
 
-## Common Component's Properties
+### Common Component's Properties
 
 All components share these common properties:
 
@@ -573,7 +579,7 @@ The following actions can be performed in response to UI events:
 
 Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
 
-### Example JSON Configuration
+### Example Configuration JSON
 
 ```json
 {
