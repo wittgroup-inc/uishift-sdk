@@ -4,40 +4,35 @@ import com.squareup.moshi.JsonClass
 
 sealed class Validation {
 
-    // TextField-specific validation
     @JsonClass(generateAdapter = true)
     data class Text(
         val required: Boolean = false,
         val minLength: Int? = null,
         val maxLength: Int? = null,
-        val regex: String? = null, // For pattern matching, like email/phone
-        val errorMessage: String? = null // Custom error message for validation failure
+        val regex: String? = null,
+        val errorMessage: String? = null
     ) : Validation()
 
-    // Checkbox / Switch validation
     @JsonClass(generateAdapter = true)
     data class Binary(
-        val required: Boolean = false, // If checkbox/switch is mandatory
-        val errorMessage: String? = null // Custom error message for validation failure
+        val required: Boolean = false,
+        val errorMessage: String? = null
     ) : Validation()
 
-    // Slider / Numeric input validation
     @JsonClass(generateAdapter = true)
     data class Numeric(
         val required: Boolean = false,
         val minValue: Float? = null,
         val maxValue: Float? = null,
-        val errorMessage: String? = null // Custom error message for validation failure
+        val errorMessage: String? = null
     ) : Validation()
 
-    // Selection (e.g., dropdown, radio buttons)
     @JsonClass(generateAdapter = true)
     data class Selection(
-        val required: Boolean = false, // If selection is mandatory
-        val errorMessage: String? = null // Custom error message for validation failure
+        val required: Boolean = false,
+        val errorMessage: String? = null
     ) : Validation()
 
-    // For fields that do not require validation
     @JsonClass(generateAdapter = true)
     data class None(val none: String = "None") : Validation()
 }
