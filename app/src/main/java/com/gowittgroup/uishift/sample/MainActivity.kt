@@ -20,7 +20,7 @@ import com.gowittgroup.uishift.constants.ButtonStyleToken
 import com.gowittgroup.uishift.constants.ComponentType
 import com.gowittgroup.uishift.constants.TextStyleToken
 import com.gowittgroup.uishift.data.ApiRepository
-import com.gowittgroup.uishift.data.ConfigRepositoryImpl2
+import com.gowittgroup.uishift.data.ConfigRepositoryImpl
 import com.gowittgroup.uishift.models.ScreenConfiguration
 import com.gowittgroup.uishift.models.components.ButtonComponent
 import com.gowittgroup.uishift.models.components.CheckBoxComponent
@@ -37,6 +37,7 @@ import com.gowittgroup.uishift.models.properties.common.Padding
 import com.gowittgroup.uishift.models.properties.common.SizeOption
 import com.gowittgroup.uishift.network.ApiService
 import com.gowittgroup.uishift.parser.ConfigParser
+import com.gowittgroup.uishift.sample.sampledata.sampleConfigJson
 import com.gowittgroup.uishift.sample.theme.UIShiftTheme
 import com.gowittgroup.uishift.screen.ScreenViewModel
 import okhttp3.OkHttpClient
@@ -92,6 +93,7 @@ class MainActivity : ComponentActivity() {
                         ButtonComponent(
                             id = "registerButton",
                             style = ButtonStyleToken.PRIMARY_BUTTON,
+                            height = SizeOption.Fixed(value = 60),
                             label = "Register",
                             onClickAction = ActionFlow.Sequence(
                                 sequence = ActionSequence(
@@ -150,7 +152,8 @@ class MainActivity : ComponentActivity() {
 
                     Box(modifier = Modifier.padding(innerPadding)) {
                         val configRepository =
-                            ConfigRepositoryImpl2(localConfig)//ConfigRepositoryImpl(registrationSampleJsonConfig)
+                          //  ConfigRepositoryImpl2(localConfig)
+                        ConfigRepositoryImpl(sampleConfigJson)
                         val apiRepository = ApiRepository(RetrofitInstance.apiService)
                         ScreenRenderingEngine(
                             ScreenViewModel(configRepository, apiRepository), navController

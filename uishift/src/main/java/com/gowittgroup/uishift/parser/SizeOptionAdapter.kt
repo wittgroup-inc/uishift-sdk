@@ -25,7 +25,7 @@ class SizeOptionAdapter {
                 SizeOptionToken.WRAP_CONTENT -> SizeOption.WrapContent
                 else -> throw JsonDataException("Unknown SizeOption type: $value")
             }
-            is Int -> SizeOption.Fixed(value)
+            is Number -> SizeOption.Fixed(value.toInt())
             else -> throw JsonDataException("Invalid type for SizeOption: $value")
         }
     }

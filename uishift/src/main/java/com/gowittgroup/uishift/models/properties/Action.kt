@@ -58,6 +58,7 @@ data class ActionSequence(
     val onError: Action? = null
 )
 
+
 sealed class ActionFlow {
 
     @JsonClass(generateAdapter = true)

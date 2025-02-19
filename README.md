@@ -596,7 +596,7 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
         {
           "type": "Image",
           "id": "appImage",
-          "height": 200,
+          "height": 250,
           "scaleType": "crop",
           "url": "https://picsum.photos/id/237/200/300",
           "description": "App screenshot"
@@ -604,25 +604,32 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
         {
           "type": "Row",
           "id": "buttonRow",
+          "width": "fillMaxSpace",
           "children": [
-            {
-              "type": "Button",
-              "id": "startButton",
-              "label": "Start Now",
-              "style": "primaryButton",
-              "onClickAction": {
-                "type": "Navigate",
-                "destination": "task_list"
-              }
-            },
             {
               "type": "Button",
               "id": "infoButton",
               "label": "More Info",
               "style": "secondaryButton",
               "onClickAction": {
-                "type": "Navigate",
-                "destination": "info_page"
+                "type": "Single",
+                "action": {
+                  "type": "Navigate",
+                  "destination": "home"
+                }
+              }
+            },
+            {
+              "type": "Button",
+              "id": "startButton",
+              "label": "Start Now",
+              "style": "primaryButton",
+              "onClickAction": {
+                "type": "Single",
+                "action": {
+                  "type": "Navigate",
+                  "destination": "home"
+                }
               }
             }
           ]
@@ -632,14 +639,16 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "id": "userNameField",
           "label": "Your Name",
           "hint": "Enter your name",
-          "initialValue": ""
+          "initialValue": "",
+          "width": "fillMaxSpace"
         },
         {
           "type": "TextField",
           "id": "emailField",
           "label": "Email Address",
           "hint": "Enter your email",
-          "initialValue": ""
+          "initialValue": "",
+          "width": "fillMaxSpace"
         },
         {
           "type": "Checkbox",
@@ -657,6 +666,7 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
         {
           "type": "Row",
           "id": "actionRow",
+          "width": "fillMaxSpace",
           "children": [
             {
               "type": "Button",
@@ -664,11 +674,23 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
               "label": "Submit",
               "style": "tertiaryButton",
               "onClickAction": {
-                "type": "SubmitData",
-                "formData": {
-                  "name": "userNameField",
-                  "email": "emailField",
-                  "termsAccepted": "termsCheckBox"
+                "type": "Single",
+                "action": {
+                  "type": "ApiRequest",
+                  "requestModel": {
+                    "type": "Command",
+                    "action": "",
+                    "parameters": {
+
+                    },
+                    "headers": {
+
+                    },
+                    "endpoint": "register",
+                    "retries": 3,
+                    "timeout": 3000
+                  },
+                  "retryCount": 0
                 }
               }
             },
@@ -678,7 +700,11 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
               "label": "Cancel",
               "style": "outlinedButton",
               "onClickAction": {
-                "type": "NoAction"
+                "type": "Single",
+                "action": {
+                  "type": "Navigate",
+                  "destination": "home"
+                }
               }
             }
           ]
@@ -724,6 +750,7 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
 }
 ````
 ### Result of above JSON Configuration
+![Screenshot of UIShift](Screenshot_20250220_045729.png)
 ![Screenshot of UIShift](screen_recording.gif)
 ### Usage
 #### Step 1. Add the JitPack repository to your build file

@@ -1,6 +1,5 @@
 package com.gowittgroup.uishift.components
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
@@ -10,7 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import com.gowittgroup.uishift.constants.ButtonStyleToken
 import com.gowittgroup.uishift.theme.ThemeConfig.colorScheme
 
@@ -43,7 +41,7 @@ fun UiShiftButton(
         ButtonStyleToken.SECONDARY_BUTTON -> {
             ElevatedButton(
                 onClick = onClick,
-                modifier = Modifier.padding(8.dp),
+                modifier = modifier,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorScheme.secondaryButtonBackground,
                     contentColor = colorScheme.secondaryButtonTextColor,
