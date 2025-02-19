@@ -92,7 +92,6 @@ class ScreenViewModel(
                 is SwitchComponent -> updateComponentState(it.id, false, ComponentType.SWITCH)
                 else -> {}
             }
-
         }
     }
 
@@ -204,6 +203,7 @@ class ScreenViewModel(
         return isValid
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun <T> getValue(componentState: ComponentState): T {
         return when (componentState) {
             is ComponentState.CheckBoxState -> componentState.isChecked as T
@@ -224,6 +224,8 @@ class ScreenViewModel(
             else -> null
         }
     }
+
+    // extract below function as Validator class
 
     private fun validateText(field: Field, value: String?, validation: Validation.Text): Boolean {
         if (validation.required && value.isNullOrEmpty()) {
@@ -294,6 +296,7 @@ class ScreenViewModel(
 
 
     private fun executeApiRequest(request: Request) {
+        Log.d(TAG, "Executing API request: $request")
         viewModelScope.launch {
             try {
                 val response = apiRepository.performRequest(request)
