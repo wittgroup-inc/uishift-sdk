@@ -6,6 +6,9 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import com.gowittgroup.uishift.ScreenRenderingEngine
+import com.gowittgroup.uishift.data.ApiRepository
+import com.gowittgroup.uishift.data.ConfigRepositoryImpl
+import com.gowittgroup.uishift.screen.ScreenViewModel
 import com.gowittgroup.uishift.testData
 import org.junit.Rule
 import org.junit.Test
@@ -18,7 +21,9 @@ class ScreenRenderingEngineTest {
     fun testSampleConfigScreen() {
         // Set the content with the sample JSON configuration
         composeTestRule.setContent {
-            ScreenRenderingEngine(testData)
+            val configRepository = ConfigRepositoryImpl(testData)
+            val apiRepository = ApiRepository()
+            ScreenRenderingEngine(ScreenViewModel(configRepository, apiRepository))
         }
 
         // Verify the welcome text is displayed

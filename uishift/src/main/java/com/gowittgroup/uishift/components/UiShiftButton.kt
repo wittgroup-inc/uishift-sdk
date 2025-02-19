@@ -1,6 +1,5 @@
 package com.gowittgroup.uishift.components
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
@@ -10,13 +9,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import com.gowittgroup.uishift.constants.ButtonStyleToken
 import com.gowittgroup.uishift.theme.ThemeConfig.colorScheme
 
 
 @Composable
 fun UiShiftButton(
+    modifier: Modifier = Modifier,
     token: String,
     label: String,
     isEnabled: Boolean = true,
@@ -27,7 +26,7 @@ fun UiShiftButton(
             Button(
                 enabled = isEnabled,
                 onClick = onClick,
-                modifier = Modifier.padding(8.dp),
+                modifier = modifier,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorScheme.primaryButtonBackground,
                     contentColor = colorScheme.primaryButtonTextColor,
@@ -42,7 +41,7 @@ fun UiShiftButton(
         ButtonStyleToken.SECONDARY_BUTTON -> {
             ElevatedButton(
                 onClick = onClick,
-                modifier = Modifier.padding(8.dp),
+                modifier = modifier,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorScheme.secondaryButtonBackground,
                     contentColor = colorScheme.secondaryButtonTextColor,
@@ -57,7 +56,7 @@ fun UiShiftButton(
         ButtonStyleToken.TERTIARY_BUTTON -> {
             FilledTonalButton(
                 onClick = onClick,
-                modifier = Modifier.padding(8.dp),
+                modifier = modifier,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorScheme.tertiaryButtonBackground,
                     contentColor = colorScheme.tertiaryButtonTextColor,
@@ -72,7 +71,7 @@ fun UiShiftButton(
         ButtonStyleToken.OUTLINED_BUTTON -> {
             OutlinedButton(
                 onClick = onClick,
-                modifier = Modifier.padding(8.dp),
+                modifier = modifier,
                 colors = ButtonDefaults.outlinedButtonColors(
                     containerColor = colorScheme.outlinedButtonBorderColor,
                     contentColor = colorScheme.outlinedButtonTextColor,
@@ -87,7 +86,7 @@ fun UiShiftButton(
         ButtonStyleToken.DESTRUCTIVE_BUTTON -> {
             Button(
                 onClick = onClick,
-                modifier = Modifier.padding(8.dp),
+                modifier = modifier,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorScheme.destructiveButtonBackground,
                     contentColor = colorScheme.destructiveButtonTextColor,
@@ -103,7 +102,7 @@ fun UiShiftButton(
             // Default button style
             Button(
                 onClick = onClick,
-                modifier = Modifier.padding(8.dp)
+                modifier = modifier
             ) {
                 Text(label, color = Color.White)
             }

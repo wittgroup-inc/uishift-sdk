@@ -1,6 +1,7 @@
 [versions]
 agp = "8.5.2"
 coilCompose = "2.7.0"
+converterGsonVersion = "2.9.0"
 json = "20210307"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -10,18 +11,22 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.2"
 composeBom = "2024.09.03"
+loggingInterceptor = "5.0.0"
 moshi = "1.13.0"
 moshiAdapters = "1.15.0"
 moshiKotlin = "1.13.0"
 moshiKotlinCodegen = "1.13.0"
 ksp = "1.9.0-1.0.13"
 appcompat = "1.7.0"
-material = "1.10.0"
+navigationCompose = "2.8.2"
 orgEveritJsonSchemaVersion = "1.14.1"
+retrofitVersion = "2.9.0"
 uiTestJunit4Android = "1.7.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 json = { module = "org.json:json", version.ref = "json" }
 json-org-everit-json-schema = { group = "com.github.erosb", name = "everit-json-schema", version.ref = "orgEveritJsonSchemaVersion" }
@@ -44,6 +49,8 @@ moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
+retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGsonVersion" }
+retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
