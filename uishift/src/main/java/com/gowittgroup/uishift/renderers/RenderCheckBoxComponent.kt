@@ -10,18 +10,18 @@ import androidx.compose.ui.Alignment
 import com.gowittgroup.uishift.components.UiShiftCheckBox
 import com.gowittgroup.uishift.components.UiShiftText
 import com.gowittgroup.uishift.models.components.CheckBoxComponent
-import com.gowittgroup.uishift.screen.ScreenState
+import com.gowittgroup.uishift.screen.ComponentState
 
 @Composable
 fun RenderCheckBoxComponent(
-    screenState: ScreenState,
+    state: ComponentState.CheckBoxState,
     component: CheckBoxComponent,
     onCheckedChange: (Boolean) -> Unit
 ) {
     var isChecked by remember {
         mutableStateOf(false)
     }
-    isChecked = screenState.checkBoxState[component.id]?.isChecked ?: component.isChecked
+    isChecked = state.isChecked
     RenderBaseProperties(component) { modifier ->
         Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
             UiShiftCheckBox(

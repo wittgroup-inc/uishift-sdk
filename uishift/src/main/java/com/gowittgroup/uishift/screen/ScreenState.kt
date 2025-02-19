@@ -5,32 +5,32 @@ import com.gowittgroup.uishift.models.properties.Field
 
 sealed class ComponentState {
     data class TextFieldState(
-        val value: String,
-        val isValid: Boolean,
+        val value: String = "",
+        val isValid: Boolean = true,
         val errorMessage: String? = null
     ) : ComponentState()
 
     data class CheckBoxState(
-        val isChecked: Boolean,
-        val isValid: Boolean,
+        val isChecked: Boolean = false,
+        val isValid: Boolean = true,
         val errorMessage: String? = null
     ) : ComponentState()
 
     data class SwitchState(
-        val isChecked: Boolean,
-        val isValid: Boolean,
+        val isChecked: Boolean = false,
+        val isValid: Boolean = true,
         val errorMessage: String? = null
     ) : ComponentState()
 
     data class RadioButtonState(
-        val selected: Boolean,
-        val isValid: Boolean,
+        val selected: Boolean = false,
+        val isValid: Boolean = true,
         val errorMessage: String? = null
     ) : ComponentState()
 
     data class SliderState(
-        val value: Float,
-        val isValid: Boolean,
+        val value: Float = 0.0f,
+        val isValid: Boolean = true,
         val errorMessage: String? = null
     ) : ComponentState()
 }

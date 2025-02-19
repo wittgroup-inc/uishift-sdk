@@ -15,15 +15,18 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.gowittgroup.uishift.data.ApiRepository
-import com.gowittgroup.uishift.network.ApiService
 import com.gowittgroup.uishift.ScreenRenderingEngine
 import com.gowittgroup.uishift.constants.ButtonStyleToken
 import com.gowittgroup.uishift.constants.ComponentType
 import com.gowittgroup.uishift.constants.TextStyleToken
+import com.gowittgroup.uishift.data.ApiRepository
 import com.gowittgroup.uishift.data.ConfigRepositoryImpl2
 import com.gowittgroup.uishift.models.ScreenConfiguration
-import com.gowittgroup.uishift.models.components.*
+import com.gowittgroup.uishift.models.components.ButtonComponent
+import com.gowittgroup.uishift.models.components.CheckBoxComponent
+import com.gowittgroup.uishift.models.components.RowComponent
+import com.gowittgroup.uishift.models.components.TextComponent
+import com.gowittgroup.uishift.models.components.TextFieldComponent
 import com.gowittgroup.uishift.models.properties.Action
 import com.gowittgroup.uishift.models.properties.ActionFlow
 import com.gowittgroup.uishift.models.properties.ActionSequence
@@ -32,6 +35,7 @@ import com.gowittgroup.uishift.models.properties.Request
 import com.gowittgroup.uishift.models.properties.Validation
 import com.gowittgroup.uishift.models.properties.common.Padding
 import com.gowittgroup.uishift.models.properties.common.SizeOption
+import com.gowittgroup.uishift.network.ApiService
 import com.gowittgroup.uishift.parser.ConfigParser
 import com.gowittgroup.uishift.sample.theme.UIShiftTheme
 import com.gowittgroup.uishift.screen.ScreenViewModel
@@ -115,10 +119,6 @@ class MainActivity : ComponentActivity() {
                                             ),
                                             validation = Validation.Binary(required = true)
                                         )
-
-
-
-
                                     ),
                                     postfixes = listOf()
                                 )

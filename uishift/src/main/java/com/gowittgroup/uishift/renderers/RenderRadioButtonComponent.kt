@@ -10,18 +10,18 @@ import androidx.compose.ui.Alignment
 import com.gowittgroup.uishift.components.UiShiftRadioButton
 import com.gowittgroup.uishift.components.UiShiftText
 import com.gowittgroup.uishift.models.components.RadioButtonComponent
-import com.gowittgroup.uishift.screen.ScreenState
+import com.gowittgroup.uishift.screen.ComponentState
 
 @Composable
 fun RenderRadioButtonComponent(
-    screenState: ScreenState,
+    state: ComponentState.RadioButtonState,
     component: RadioButtonComponent,
     onClick: () -> Unit
 ) {
     var isSelected by remember {
         mutableStateOf(false)
     }
-    isSelected = screenState.radioButtonState[component.id]?.selected ?: component.isSelected
+    isSelected = state.selected
 
     RenderBaseProperties(component) { modifier ->
         Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {

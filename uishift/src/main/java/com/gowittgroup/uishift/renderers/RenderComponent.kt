@@ -2,7 +2,20 @@ package com.gowittgroup.uishift.renderers
 
 import android.util.Log
 import androidx.compose.runtime.Composable
-import com.gowittgroup.uishift.models.components.*
+import com.gowittgroup.uishift.models.components.ButtonComponent
+import com.gowittgroup.uishift.models.components.CheckBoxComponent
+import com.gowittgroup.uishift.models.components.ColumnComponent
+import com.gowittgroup.uishift.models.components.DividerComponent
+import com.gowittgroup.uishift.models.components.ImageComponent
+import com.gowittgroup.uishift.models.components.RadioButtonComponent
+import com.gowittgroup.uishift.models.components.RowComponent
+import com.gowittgroup.uishift.models.components.SliderComponent
+import com.gowittgroup.uishift.models.components.SpacerComponent
+import com.gowittgroup.uishift.models.components.SwitchComponent
+import com.gowittgroup.uishift.models.components.TextComponent
+import com.gowittgroup.uishift.models.components.TextFieldComponent
+import com.gowittgroup.uishift.models.components.UIComponent
+import com.gowittgroup.uishift.models.components.Unknown
 import com.gowittgroup.uishift.models.properties.Action
 import com.gowittgroup.uishift.models.properties.ActionFlow
 import com.gowittgroup.uishift.screen.ComponentState
@@ -50,7 +63,7 @@ fun RenderComponent(
         is TextFieldComponent -> {
             Log.d(TAG, "Rendering TextFieldComponent with id: ${component.id}")
             RenderTextFieldComponent(
-                screenState = screenState.textFieldsState.getOrDefault(component.id, ComponentState.TextFieldState("", true)),
+                state = screenState.textFieldsState.getOrDefault(component.id, ComponentState.TextFieldState()),
                 component = component,
                 onValueChange = { newText ->
                     Log.d(TAG, "TextFieldComponent id: ${component.id} updated with: $newText")
@@ -62,7 +75,7 @@ fun RenderComponent(
         is CheckBoxComponent -> {
             Log.d(TAG, "Rendering CheckBoxComponent with id: ${component.id}")
             RenderCheckBoxComponent(
-                screenState = screenState,
+                state = screenState.checkBoxState.getOrDefault(component.id, ComponentState.CheckBoxState()),
                 component = component,
                 onCheckedChange = { isChecked ->
                     Log.d(TAG, "CheckBoxComponent id: ${component.id} changed to: $isChecked")
@@ -74,7 +87,7 @@ fun RenderComponent(
         is RadioButtonComponent -> {
             Log.d(TAG, "Rendering RadioButtonComponent with id: ${component.id}")
             RenderRadioButtonComponent(
-                screenState = screenState,
+                state = screenState.radioButtonState.getOrDefault(component.id, ComponentState.RadioButtonState()),
                 component = component,
                 onClick = {
                     val isSelected = screenState.radioButtonState.getOrDefault(
@@ -93,7 +106,7 @@ fun RenderComponent(
         is SwitchComponent -> {
             Log.d(TAG, "Rendering SwitchComponent with id: ${component.id}")
             RenderSwitchComponent(
-                screenState = screenState,
+                state = screenState.switchState.getOrDefault(component.id, ComponentState.SwitchState()),
                 component = component,
                 onCheckedChange = { isChecked ->
                     Log.d(TAG, "SwitchComponent id: ${component.id} changed to: $isChecked")
@@ -105,7 +118,7 @@ fun RenderComponent(
         is SliderComponent -> {
             Log.d(TAG, "Rendering SliderComponent with id: ${component.id}")
             RenderSliderComponent(
-                screenState = screenState,
+                state = screenState.sliderState.getOrDefault(component.id, ComponentState.SliderState()),
                 component = component,
                 onValueChange = { newValue ->
                     Log.d(TAG, "SliderComponent id: ${component.id} changed to: $newValue")

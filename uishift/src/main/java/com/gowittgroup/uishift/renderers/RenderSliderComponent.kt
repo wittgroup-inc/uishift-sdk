@@ -11,21 +11,21 @@ import androidx.compose.ui.Modifier
 import com.gowittgroup.uishift.components.UiShiftSlider
 import com.gowittgroup.uishift.components.UiShiftText
 import com.gowittgroup.uishift.models.components.SliderComponent
-import com.gowittgroup.uishift.screen.ScreenState
+import com.gowittgroup.uishift.screen.ComponentState
 
 @Composable
 fun RenderSliderComponent(
-    screenState: ScreenState,
+    state: ComponentState.SliderState,
     component: SliderComponent,
     onValueChange: (Float) -> Unit
 ) {
     var sliderValue by remember {
         mutableFloatStateOf(
-            screenState.sliderState[component.id]?.value ?: component.initialValue
+            state.value
         )
     }
 
-    sliderValue = screenState.sliderState[component.id]?.value ?: component.initialValue
+    sliderValue = state.value
 
     RenderBaseProperties(component) { modifier ->
         Column(modifier = modifier) {

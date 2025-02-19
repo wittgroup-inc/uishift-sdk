@@ -11,11 +11,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import com.gowittgroup.uishift.components.UiShiftSwitch
 import com.gowittgroup.uishift.models.components.SwitchComponent
-import com.gowittgroup.uishift.screen.ScreenState
+import com.gowittgroup.uishift.screen.ComponentState
 
 @Composable
 fun RenderSwitchComponent(
-    screenState: ScreenState,
+    state: ComponentState.SwitchState,
     component: SwitchComponent,
     onCheckedChange: (Boolean) -> Unit
 ) {
@@ -23,7 +23,7 @@ fun RenderSwitchComponent(
         mutableStateOf(false)
     }
 
-    isChecked = screenState.switchState[component.id]?.isChecked ?: component.isChecked
+    isChecked = state.isChecked
 
     RenderBaseProperties(component) { modifier ->
         Row(
