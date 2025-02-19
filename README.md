@@ -55,10 +55,10 @@ All components share these common properties:
   - `description`: String (optional)
   - `isFocusable`: Boolean (default: true)
   - `isClickable`: Boolean (default: false)
-- `width`: Object - one of:
-  - `{"type": "fillMaxSpace"}`
-  - `{"type": "wrapContent"}`
-  - `{"type": "fixed", "value": number}`
+- `width`: String/Number - one of:
+  - `fillMaxSpace`
+  - `wrapContent`
+  - `number`
 - `height`: Object - same options as width
 
 The following UI components are available for use in your configuration document:
