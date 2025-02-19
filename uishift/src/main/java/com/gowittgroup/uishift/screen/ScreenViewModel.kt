@@ -3,15 +3,25 @@ package com.gowittgroup.uishift.screen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gowittgroup.uishift.data.ApiRepository
 import com.gowittgroup.uishift.constants.ComponentType
+import com.gowittgroup.uishift.data.ApiRepository
 import com.gowittgroup.uishift.data.Result
 import com.gowittgroup.uishift.domain.ConfigRepository
+import com.gowittgroup.uishift.models.ScreenConfiguration
+import com.gowittgroup.uishift.models.components.CheckBoxComponent
+import com.gowittgroup.uishift.models.components.RadioButtonComponent
+import com.gowittgroup.uishift.models.components.SliderComponent
+import com.gowittgroup.uishift.models.components.SwitchComponent
+import com.gowittgroup.uishift.models.components.TextFieldComponent
 import com.gowittgroup.uishift.models.properties.Field
 import com.gowittgroup.uishift.models.properties.Request
 import com.gowittgroup.uishift.models.properties.Validation
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 private const val TAG = "ScreenViewModel"
@@ -43,6 +53,7 @@ class ScreenViewModel(
                 _screenConfigState.value = when (result) {
                     is Result.Success -> {
                         Log.d(TAG, "Screen configuration fetched successfully")
+                        initializeInputComponentsState(result)
                         ScreenConfigState.Success(result.data)
                     }
 
@@ -58,6 +69,30 @@ class ScreenViewModel(
                 Log.e(TAG, "Exception occurred during fetchScreenConfig: ${e.message}")
                 _screenConfigState.value = ScreenConfigState.Error(e.message ?: "Unknown Exception")
             }
+        }
+    }
+
+    private fun initializeInputComponentsState(result: Result.Success<ScreenConfiguration>) {
+        result.data.components.forEach {
+            when (it) {
+                is TextFieldComponent -> updateComponentState(
+                    it.id,
+                    it.initialValue,
+                    ComponentType.TEXT_FIELD
+                )
+
+                is CheckBoxComponent -> updateComponentState(it.id, false, ComponentType.CHECKBOX)
+                is RadioButtonComponent -> updateComponentState(
+                    it.id,
+                    false,
+                    ComponentType.RADIO_BUTTON
+                )
+
+                is SliderComponent -> updateComponentState(it.id, 0f, ComponentType.SLIDER)
+                is SwitchComponent -> updateComponentState(it.id, false, ComponentType.SWITCH)
+                else -> {}
+            }
+
         }
     }
 
@@ -181,7 +216,7 @@ class ScreenViewModel(
 
     private fun getComponentState(field: Field): ComponentState? {
         return when (field.type) {
-            ComponentType.TEXT -> uiState.value.textFieldsState[field.id]
+            ComponentType.TEXT_FIELD -> uiState.value.textFieldsState[field.id]
             ComponentType.CHECKBOX -> uiState.value.checkBoxState[field.id]
             ComponentType.SWITCH -> uiState.value.switchState[field.id]
             ComponentType.RADIO_BUTTON -> uiState.value.radioButtonState[field.id]
@@ -292,5 +327,5 @@ class ScreenViewModel(
 sealed class NavigationEvent {
     data class NavigateTo(val destination: String) : NavigationEvent()
     data class ShowMessage(val message: String) : NavigationEvent()
-    object NavigateUp : NavigationEvent()
+    data object NavigateUp : NavigationEvent()
 }

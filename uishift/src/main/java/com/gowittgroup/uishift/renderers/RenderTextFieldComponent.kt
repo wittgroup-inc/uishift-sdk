@@ -25,7 +25,7 @@ fun RenderTextFieldComponent(
 
     RenderBaseProperties(component) { modifier ->
         UiShiftTextField(
-            isError = state.isValid,
+            isError = !state.isValid,
             value = text,
             isEnabled = component.isEnabled,
             readOnly = component.readOnly,
