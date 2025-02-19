@@ -1,14 +1,14 @@
 package com.gowittgroup.uishift.models.components
 
 import com.gowittgroup.uishift.models.properties.ScaleType
+import com.gowittgroup.uishift.models.properties.common.Accessibility
 import com.gowittgroup.uishift.models.properties.common.Alignment
 import com.gowittgroup.uishift.models.properties.common.Interactions
+import com.gowittgroup.uishift.models.properties.common.Padding
 import com.gowittgroup.uishift.models.properties.common.SizeOption
 import com.gowittgroup.uishift.models.properties.common.Visibility
-import com.gowittgroup.uishift.models.properties.common.Accessibility
 import com.gowittgroup.uishift.models.properties.common.animation.Animation
 import com.gowittgroup.uishift.models.properties.common.background.Background
-import com.gowittgroup.uishift.models.properties.common.Padding
 import com.gowittgroup.uishift.models.properties.common.shape.Shape
 import com.squareup.moshi.JsonClass
 
@@ -18,7 +18,6 @@ data class ImageComponent(
     val description: String,
     val scaleType: ScaleType = ScaleType.FIT,
     override val id: String,
-    // Pass all properties to the BaseComponent
     override val padding: Padding = Padding(),
     override val background: Background? = null,
     override val shape: Shape? = null,
