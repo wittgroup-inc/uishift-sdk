@@ -62,7 +62,6 @@ class ConfigParser {
                 .withSubtype(Request.Query::class.java, RequestType.QUERY)
         ).add(
             PolymorphicJsonAdapterFactory.of(Validation::class.java, TYPE_LABEL_KEY)
-                .withSubtype(Validation.Base::class.java, ValidationType.BASE)
                 .withSubtype(Validation.Selection::class.java, ValidationType.SELECTION)
                 .withSubtype(Validation.Text::class.java, ValidationType.TEXT)
                 .withSubtype(Validation.Binary::class.java, ValidationType.BOOLEAN)

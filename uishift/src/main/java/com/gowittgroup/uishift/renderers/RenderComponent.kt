@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import com.gowittgroup.uishift.models.components.*
 import com.gowittgroup.uishift.models.properties.Action
 import com.gowittgroup.uishift.models.properties.ActionFlow
+import com.gowittgroup.uishift.screen.ComponentState
 import com.gowittgroup.uishift.screen.ScreenIntent
 import com.gowittgroup.uishift.screen.ScreenState
 
@@ -49,7 +50,7 @@ fun RenderComponent(
         is TextFieldComponent -> {
             Log.d(TAG, "Rendering TextFieldComponent with id: ${component.id}")
             RenderTextFieldComponent(
-                screenState = screenState,
+                screenState = screenState.textFieldsState.getOrDefault(component.id, ComponentState.TextFieldState("", true)),
                 component = component,
                 onValueChange = { newText ->
                     Log.d(TAG, "TextFieldComponent id: ${component.id} updated with: $newText")
@@ -79,10 +80,10 @@ fun RenderComponent(
                     val isSelected = screenState.radioButtonState.getOrDefault(
                         component.id,
                         component.isSelected
-                    )
+                    ) as Boolean
                     Log.d(
                         TAG,
-                        "RadioButtonComponent id: ${component.id} changed to: ${!isSelected}"
+                        "RadioButtonComponent id: ${component.id} changed to: ${!(isSelected)}"
                     )
                     onIntent(ScreenIntent.UpdateRadioButton(component.id, !isSelected))
                 }
@@ -173,8 +174,8 @@ fun handleAction(action: Action): ScreenIntent {
         }
 
         is Action.Validate -> {
-            Log.d(TAG, "Action: Validate fieldId: ${action.fieldId}")
-            ScreenIntent.Validate(action.fieldId, action.validation)
+            Log.d(TAG, "Action: Validate fieldId: ${action.field}")
+            ScreenIntent.Validate(action.field, action.validation)
         }
 
         is Action.ShowError -> {

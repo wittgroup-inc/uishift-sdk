@@ -21,7 +21,7 @@ fun RenderRadioButtonComponent(
     var isSelected by remember {
         mutableStateOf(false)
     }
-    isSelected = screenState.radioButtonState[component.id] ?: component.isSelected
+    isSelected = screenState.radioButtonState[component.id]?.selected ?: component.isSelected
 
     RenderBaseProperties(component) { modifier ->
         Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {

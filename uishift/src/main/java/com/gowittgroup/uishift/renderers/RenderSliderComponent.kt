@@ -21,11 +21,11 @@ fun RenderSliderComponent(
 ) {
     var sliderValue by remember {
         mutableFloatStateOf(
-            screenState.sliderState[component.id] ?: component.initialValue
+            screenState.sliderState[component.id]?.value ?: component.initialValue
         )
     }
 
-    sliderValue = screenState.sliderState[component.id] ?: component.initialValue
+    sliderValue = screenState.sliderState[component.id]?.value ?: component.initialValue
 
     RenderBaseProperties(component) { modifier ->
         Column(modifier = modifier) {

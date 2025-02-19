@@ -21,7 +21,7 @@ fun RenderCheckBoxComponent(
     var isChecked by remember {
         mutableStateOf(false)
     }
-    isChecked = screenState.checkBoxState[component.id] ?: component.isChecked
+    isChecked = screenState.checkBoxState[component.id]?.isChecked ?: component.isChecked
     RenderBaseProperties(component) { modifier ->
         Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
             UiShiftCheckBox(

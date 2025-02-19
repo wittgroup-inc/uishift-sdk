@@ -4,13 +4,6 @@ import com.squareup.moshi.JsonClass
 
 sealed class Validation {
 
-    // Generic validation that applies to all fields
-    @JsonClass(generateAdapter = true)
-    data class Base(
-        val required: Boolean = false, // Applies to all field types
-        val errorMessage: String? = null // Custom error message for validation failure
-    ) : Validation()
-
     // TextField-specific validation
     @JsonClass(generateAdapter = true)
     data class Text(

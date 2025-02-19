@@ -1,11 +1,57 @@
 package com.gowittgroup.uishift.screen
 
+import com.gowittgroup.uishift.constants.ComponentType
+import com.gowittgroup.uishift.models.properties.Field
+
+sealed class ComponentState {
+    data class TextFieldState(
+        val value: String,
+        val isValid: Boolean,
+        val errorMessage: String? = null
+    ) : ComponentState()
+
+    data class CheckBoxState(
+        val isChecked: Boolean,
+        val isValid: Boolean,
+        val errorMessage: String? = null
+    ) : ComponentState()
+
+    data class SwitchState(
+        val isChecked: Boolean,
+        val isValid: Boolean,
+        val errorMessage: String? = null
+    ) : ComponentState()
+
+    data class RadioButtonState(
+        val selected: Boolean,
+        val isValid: Boolean,
+        val errorMessage: String? = null
+    ) : ComponentState()
+
+    data class SliderState(
+        val value: Float,
+        val isValid: Boolean,
+        val errorMessage: String? = null
+    ) : ComponentState()
+}
+
 data class ScreenState(
-    val textFieldsState: Map<String, String> = emptyMap(),
-    val checkBoxState: Map<String, Boolean> = emptyMap(),
-    val radioButtonState: Map<String, Boolean> = emptyMap(),
-    val switchState: Map<String, Boolean> = emptyMap(),
-    val sliderState: Map<String, Float> = emptyMap(),
+    val textFieldsState: Map<String, ComponentState.TextFieldState> = emptyMap(),
+    val checkBoxState: Map<String, ComponentState.CheckBoxState> = emptyMap(),
+    val radioButtonState: Map<String, ComponentState.RadioButtonState> = emptyMap(),
+    val switchState: Map<String, ComponentState.SwitchState> = emptyMap(),
+    val sliderState: Map<String, ComponentState.SliderState> = emptyMap(),
     val isLoading: Boolean = false,
     val error: String? = null
 )
+
+fun getComponentState(field: Field, state: ScreenState): ComponentState? {
+    return when (field.type) {
+        ComponentType.TEXT -> state.textFieldsState[field.id]
+        ComponentType.CHECKBOX -> state.checkBoxState[field.id]
+        ComponentType.SWITCH -> state.switchState[field.id]
+        ComponentType.RADIO_BUTTON -> state.radioButtonState[field.id]
+        ComponentType.SLIDER -> state.sliderState[field.id]
+        else -> null
+    }
+}

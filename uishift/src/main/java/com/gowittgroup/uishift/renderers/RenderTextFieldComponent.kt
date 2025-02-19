@@ -7,11 +7,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.gowittgroup.uishift.components.UiShiftTextField
 import com.gowittgroup.uishift.models.components.TextFieldComponent
+import com.gowittgroup.uishift.screen.ComponentState
 import com.gowittgroup.uishift.screen.ScreenState
 
 @Composable
 fun RenderTextFieldComponent(
-    screenState: ScreenState,
+    screenState: ComponentState.TextFieldState,
     component: TextFieldComponent,
     onValueChange: (String) -> Unit
 ) {
@@ -21,11 +22,12 @@ fun RenderTextFieldComponent(
         )
     }
 
-    text = screenState.textFieldsState[component.id] ?: component.initialValue
+    text = screenState.value ?: component.initialValue
 
     RenderBaseProperties(component) { modifier ->
         UiShiftTextField(
-            value = screenState.textFieldsState[component.id] ?: component.initialValue,
+            isError = screenState.isValid,
+            value = text,
             isEnabled = component.isEnabled,
             readOnly = component.readOnly,
             onValueChange = onValueChange,

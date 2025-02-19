@@ -24,6 +24,11 @@ import com.gowittgroup.uishift.constants.TextStyleToken
 import com.gowittgroup.uishift.data.ConfigRepositoryImpl2
 import com.gowittgroup.uishift.models.ScreenConfiguration
 import com.gowittgroup.uishift.models.components.*
+import com.gowittgroup.uishift.models.properties.Action
+import com.gowittgroup.uishift.models.properties.ActionFlow
+import com.gowittgroup.uishift.models.properties.ActionSequence
+import com.gowittgroup.uishift.models.properties.Field
+import com.gowittgroup.uishift.models.properties.Request
 import com.gowittgroup.uishift.models.properties.Validation
 import com.gowittgroup.uishift.models.properties.common.Padding
 import com.gowittgroup.uishift.models.properties.common.SizeOption
@@ -59,7 +64,8 @@ class MainActivity : ComponentActivity() {
                     width = SizeOption.FillMaxSpace,
                     padding = Padding(top = 8),
                     id = "emailField", label = "Email",
-                    hint = "email@domain"
+                    hint = "email@domain",
+                    validation = Validation.Text(regex = "^[^@]+@[^@]+\\.[^@]+\$")
                 ),
 
                 TextFieldComponent(
@@ -83,10 +89,10 @@ class MainActivity : ComponentActivity() {
                             id = "registerButton",
                             style = ButtonStyleToken.PRIMARY_BUTTON,
                             label = "Register",
-                            onClickAction = com.gowittgroup.uishift.models.properties.ActionFlow.Sequence(
-                                sequence = com.gowittgroup.uishift.models.properties.ActionSequence(
-                                    core = com.gowittgroup.uishift.models.properties.Action.ApiRequest(
-                                        requestModel = com.gowittgroup.uishift.models.properties.Request.Command(
+                            onClickAction = ActionFlow.Sequence(
+                                sequence = ActionSequence(
+                                    core = Action.ApiRequest(
+                                        requestModel = Request.Command(
                                             action = "",
                                             parameters = mapOf(),
                                             headers = mapOf(),
@@ -95,13 +101,24 @@ class MainActivity : ComponentActivity() {
                                         retryCount = 0
                                     ),
                                     prefixes = listOf(
-                                        com.gowittgroup.uishift.models.properties.Action.Validate(
-                                            fieldId = com.gowittgroup.uishift.models.properties.Field(
+                                        Action.Validate(
+                                            field = Field(
+                                                id = "emailField",
+                                                type = ComponentType.TEXT_FIELD
+                                            ),
+                                            validation = Validation.Text(regex = "^[^@]+@[^@]+\\.[^@]+\$")
+                                        ),
+                                        Action.Validate(
+                                            field = Field(
                                                 id = "termsAndCondition",
                                                 type = ComponentType.CHECKBOX
                                             ),
                                             validation = Validation.Binary(required = true)
                                         )
+
+
+
+
                                     ),
                                     postfixes = listOf()
                                 )
@@ -111,8 +128,8 @@ class MainActivity : ComponentActivity() {
                             id = "cancelButton",
                             label = "Cancel",
                             style = ButtonStyleToken.TERTIARY_BUTTON,
-                            onClickAction = com.gowittgroup.uishift.models.properties.ActionFlow.Single(
-                                action = com.gowittgroup.uishift.models.properties.Action.Navigate(destination = "home")
+                            onClickAction = ActionFlow.Single(
+                                action = Action.Navigate(destination = "home")
                             )
                         )
                     )

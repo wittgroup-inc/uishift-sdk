@@ -13,7 +13,7 @@ sealed class Action {
 
     @JsonClass(generateAdapter = true)
     data class Validate(
-        val fieldId: Field,
+        val field: Field,
         val validation: Validation,
         val onValidationFail: Action? = null // Action to perform if validation fails
     ) : Action()

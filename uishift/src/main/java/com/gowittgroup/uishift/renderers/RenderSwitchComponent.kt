@@ -23,7 +23,7 @@ fun RenderSwitchComponent(
         mutableStateOf(false)
     }
 
-    isChecked = screenState.switchState[component.id] ?: component.isChecked
+    isChecked = screenState.switchState[component.id]?.isChecked ?: component.isChecked
 
     RenderBaseProperties(component) { modifier ->
         Row(
