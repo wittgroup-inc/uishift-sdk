@@ -6,7 +6,12 @@ UIShift is an SDK designed to dynamically generate user interfaces using Jetpack
 
 UIShift allows developers to build flexible and dynamic user interfaces by defining UI components and their behaviors in a configuration file. By using Jetpack Compose, the SDK makes it easy to create rich, interactive UIs that adapt to changing data and user interactions.
 
-## Common Properties
+
+
+
+## Components Overview
+
+## Common Component's Properties
 
 All components share these common properties:
 
@@ -49,9 +54,6 @@ All components share these common properties:
   - `{"type": "wrapContent"}`
   - `{"type": "fixed", "value": number}`
 - `height`: Object - same options as width
-
-
-## Components Overview
 
 The following UI components are available for use in your configuration document:
 
