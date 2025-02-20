@@ -1,6 +1,6 @@
 # UIShift SDK Configuration Guide
 
-UIShift is an SDK designed to dynamically generate user interfaces using Jetpack Compose based on a configuration file. This document provides a detailed guide on how to create a `ScreenConfiguration` JSON document, including all available components, styles, actions, and example configurations.
+UIShift is an SDK designed to dynamically generate user interfaces (***Server-driven UI***) using Jetpack Compose based on a configuration file. This document provides a detailed guide on how to create a `ScreenConfiguration` JSON document, including all available components, styles, actions, and example configurations.
 
 ## Overview
 
