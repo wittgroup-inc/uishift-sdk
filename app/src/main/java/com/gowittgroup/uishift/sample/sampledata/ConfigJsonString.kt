@@ -25,7 +25,10 @@ val sampleConfigJson = """
           "type": "Text",
           "id": "appDescription",
           "content": "This application helps you manage your tasks efficiently.",
-          "style": "mainContent"
+          "style": "mainContent",
+          "padding": {
+            "bottom": 24
+          }
         },
         {
           "type": "Image",
@@ -39,12 +42,16 @@ val sampleConfigJson = """
           "type": "Row",
           "id": "buttonRow",
           "width": "fillMaxSpace",
+          "padding": {
+            "top": 8,
+            "bottom": 8
+          },
           "children": [
             {
               "type": "Button",
-              "id": "infoButton",
-              "label": "More Info",
-              "style": "secondaryButton",
+              "id": "startButton",
+              "label": "Start Now",
+              "style": "primaryButton",
               "onClickAction": {
                 "type": "Single",
                 "action": {
@@ -55,9 +62,9 @@ val sampleConfigJson = """
             },
             {
               "type": "Button",
-              "id": "startButton",
-              "label": "Start Now",
-              "style": "primaryButton",
+              "id": "infoButton",
+              "label": "More Info",
+              "style": "secondaryButton",
               "onClickAction": {
                 "type": "Single",
                 "action": {
@@ -101,6 +108,10 @@ val sampleConfigJson = """
           "type": "Row",
           "id": "actionRow",
           "width": "fillMaxSpace",
+          "padding": {
+            "top": 8,
+            "bottom": 8
+          },
           "children": [
             {
               "type": "Button",
@@ -159,7 +170,8 @@ val sampleConfigJson = """
           "type": "Switch",
           "id": "botSetting",
           "label": "Enable bot",
-          "isChecked": true
+          "isChecked": true,
+          "width": "fillMaxSpace"
         },
         {
           "type": "Divider",
