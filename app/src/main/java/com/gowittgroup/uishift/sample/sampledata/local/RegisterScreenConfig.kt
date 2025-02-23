@@ -87,6 +87,7 @@ val registerScreenConfig = """
             "none": "None"
           },
           "imeAction": "done",
+          "visualTransformation": "password",
           "keyboardType": "text",
           "id": "password",
           "padding": {

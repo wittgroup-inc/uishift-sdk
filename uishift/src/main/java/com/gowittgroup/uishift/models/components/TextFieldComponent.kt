@@ -3,6 +3,7 @@ package com.gowittgroup.uishift.models.components
 import com.gowittgroup.uishift.models.properties.ImeAction
 import com.gowittgroup.uishift.models.properties.KeyboardType
 import com.gowittgroup.uishift.models.properties.Validation
+import com.gowittgroup.uishift.models.properties.VisualTransformation
 import com.gowittgroup.uishift.models.properties.common.Accessibility
 import com.gowittgroup.uishift.models.properties.common.Alignment
 import com.gowittgroup.uishift.models.properties.common.Interactions
@@ -24,6 +25,7 @@ data class TextFieldComponent(
     val validation: Validation = Validation.None(),
     val imeAction: ImeAction = ImeAction.DONE,
     val keyboardType: KeyboardType = KeyboardType.TEXT,
+    val visualTransformation: VisualTransformation = VisualTransformation.NONE,
     override val id: String,
     override val padding: Padding = Padding(),
     override val background: Background? = null,

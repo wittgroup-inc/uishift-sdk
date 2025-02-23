@@ -70,14 +70,12 @@ The following UI components are available for use in your configuration document
   - `type`: String (Has fixed value `Text`)
   - `content`: String (The text to display)
   - `style`: String (The style token to apply)
-  - `visualTransformation`: String (How text should transform, value can be `none` or `password` or `capitalize`)
 
 ```json
 {
   "type": "Text",
   "content": "Hello World",
-  "style": "mainContent",
-  "visualTransformation": "none"
+  "style": "mainContent"
 }
 ```
 
@@ -170,6 +168,7 @@ The following UI components are available for use in your configuration document
   - `validation`: Validation (Takes validation object)
   - `imeAction`: ImeAction (IMEAction, value can be `done`, `go` `search`, `send` and `next` defaults to `done`),
   - `keyboardType`: KeyboardType (Which keyboard should appear, defaults to `text`) ),
+  - `visualTransformation`: String (How text should transform, value can be `none` or `password` or `capitalize`)
 
 ```json
 {
@@ -188,7 +187,8 @@ The following UI components are available for use in your configuration document
     "errorMessage": "Invalid username"
   },
   "imeAction": "done", 
-  "keyboardType": "text"
+  "keyboardType": "text",
+  "visualTransformation": "none"
 }
 ```
 

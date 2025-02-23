@@ -65,6 +65,7 @@ fun RenderComponent(
             RenderTextFieldComponent(
                 state = screenState.textFieldsState.getOrDefault(component.id, ComponentState.TextFieldState()),
                 component = component,
+                visualTransformation = component.visualTransformation,
                 onValueChange = { newText ->
                     Log.d(TAG, "TextFieldComponent id: ${component.id} updated with: $newText")
                     onIntent(ScreenIntent.UpdateTextField(component.id, newText))

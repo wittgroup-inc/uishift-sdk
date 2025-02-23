@@ -1,6 +1,5 @@
 package com.gowittgroup.uishift.models.components
 
-import com.gowittgroup.uishift.models.properties.VisualTransformation
 import com.gowittgroup.uishift.models.properties.common.Accessibility
 import com.gowittgroup.uishift.models.properties.common.Alignment
 import com.gowittgroup.uishift.models.properties.common.Interactions
@@ -16,7 +15,6 @@ import com.squareup.moshi.JsonClass
 data class TextComponent(
     val content: String,
     val style: String,
-    val visualTransformation: VisualTransformation = VisualTransformation.NONE,
     override val id: String,
     override val padding: Padding = Padding(),
     override val background: Background? = null,
