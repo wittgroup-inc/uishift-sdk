@@ -373,3 +373,6 @@ Add the dependency module build.gradle
 ````
 [![](https://jitpack.io/v/wittgroup-inc/uishift-sdk.svg)](https://jitpack.io/#wittgroup-inc/uishift-sdk)
 ##
+
+## License  
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
