@@ -65,6 +65,15 @@ dependencies {
     ksp(libs.moshi.kotlin.codegen)
     implementation(libs.coil.compose)
 
+    // Navigation for Jetpack Compose
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.retrofit2.converter.gson) // For JSON conversion
+
+    // Optional: For using LiveData and ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

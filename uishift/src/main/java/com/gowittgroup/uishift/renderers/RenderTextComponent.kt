@@ -1,17 +1,17 @@
 package com.gowittgroup.uishift.renderers
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.gowittgroup.uishift.components.UiShiftText
-import com.gowittgroup.uishift.models.UIComponent
+import com.gowittgroup.uishift.models.components.TextComponent
+
 
 @Composable
-fun RenderTextComponent(component: UIComponent.TextComponent) {
-    UiShiftText(
-        token = component.style,
-        text = component.content,
-        modifier = Modifier.padding(8.dp)
-    )
+fun RenderTextComponent(component: TextComponent) {
+    RenderBaseProperties(component) { modifier ->
+        UiShiftText(
+            styleToken = component.style,
+            text = component.content,
+            modifier = modifier
+        )
+    }
 }

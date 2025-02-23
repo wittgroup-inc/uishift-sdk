@@ -1,141 +1,5 @@
 package com.gowittgroup.uishift.sample.sampledata
 
-val registrationSampleJsonConfig = """
-{
-  "components": [
-    {
-      "type": "Column",
-      "id": "registrationColumn",
-      "children": [
-        {
-          "type": "Text",
-          "id": "headerText",
-          "content": "User Registration",
-          "style": "mainTitle"
-        },
-        {
-          "type": "TextField",
-          "id": "nameField",
-          "label": "Name",
-          "hint": "Enter your full name",
-          "initialValue": ""
-        },
-        {
-          "type": "TextField",
-          "id": "emailField",
-          "label": "Email",
-          "hint": "example@example.com",
-          "initialValue": ""
-        },
-        {
-          "type": "Checkbox",
-          "id": "termsCheckBox",
-          "label": "I accept the terms and conditions",
-          "isChecked": false
-        },
-        {
-          "type": "Row",
-          "id": "buttonRow",
-          "children": [
-            {
-              "type": "Button",
-              "id": "submitButton",
-              "label": "Register",
-              "style": "primaryButton",
-              "onClickAction": {
-                "type": "SubmitData",
-                "formData": {
-                  "name": "nameField",
-                  "email": "emailField",
-                  "termsAccepted": "termsCheckBox"
-                }
-              }
-            },
-            {
-              "type": "Button",
-              "id": "cancelButton",
-              "label": "Cancel",
-              "style": "secondaryButton",
-              "onClickAction": {
-                "type": "Navigate",
-                "destination": "HomeScreen"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-""".trimIndent()
-
-val dashBoardSampleJsonConfig = """
-{
-  "components": [
-    {
-      "type": "Column",
-      "id": "dashboardColumn",
-      "children": [
-        {
-          "type": "Text",
-          "id": "welcomeText",
-          "content": "Welcome to Your Dashboard",
-          "style": "mainTitle"
-        },
-        {
-          "type": "Text",
-          "id": "profileInfo",
-          "content": "Name: John Doe\\nEmail: john.doe@example.com",
-          "style": "mainContent"
-        },
-        {
-          "type": "TextField",
-          "id": "editNameField",
-          "label": "Edit Name",
-          "hint": "Enter your new name",
-          "initialValue": "John Doe"
-        },
-        {
-          "type": "Slider",
-          "id": "preferenceSlider",
-          "min": 1,
-          "max": 10,
-          "initialValue": 5
-        },
-        {
-          "type": "Row",
-          "id": "actionButtonRow",
-          "children": [
-            {
-              "type": "Button",
-              "id": "saveChangesButton",
-              "label": "Save Changes",
-              "style": "primaryButton",
-              "onClickAction": {
-                "type": "SubmitData",
-                "formData": {
-                  "name": "editNameField"
-                }
-              }
-            },
-            {
-              "type": "Button",
-              "id": "logoutButton",
-              "label": "Logout",
-              "style": "secondaryButton",
-              "onClickAction": {
-                "type": "Navigate",
-                "destination": "LoginScreen"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-"""
-
 val sampleConfigJson = """
 {
   "components": [
@@ -143,6 +7,13 @@ val sampleConfigJson = """
       "type": "Column",
       "id": "mainColumn",
       "isScrollable": true,
+      "width": "fillMaxSpace",
+      "padding": {
+        "top": 16,
+        "bottom": 16,
+        "start": 16,
+        "end": 16
+      },
       "children": [
         {
           "type": "Text",
@@ -154,12 +25,15 @@ val sampleConfigJson = """
           "type": "Text",
           "id": "appDescription",
           "content": "This application helps you manage your tasks efficiently.",
-          "style": "mainContent"
+          "style": "mainContent",
+          "padding": {
+            "bottom": 24
+          }
         },
         {
           "type": "Image",
           "id": "appImage",
-          "height": 200,
+          "height": 250,
           "scaleType": "crop",
           "url": "https://picsum.photos/id/237/200/300",
           "description": "App screenshot"
@@ -167,6 +41,11 @@ val sampleConfigJson = """
         {
           "type": "Row",
           "id": "buttonRow",
+          "width": "fillMaxSpace",
+          "padding": {
+            "top": 8,
+            "bottom": 8
+          },
           "children": [
             {
               "type": "Button",
@@ -174,8 +53,11 @@ val sampleConfigJson = """
               "label": "Start Now",
               "style": "primaryButton",
               "onClickAction": {
-                "type": "Navigate",
-                "destination": "task_list"
+                "type": "Single",
+                "action": {
+                  "type": "Navigate",
+                  "destination": "home"
+                }
               }
             },
             {
@@ -184,8 +66,11 @@ val sampleConfigJson = """
               "label": "More Info",
               "style": "secondaryButton",
               "onClickAction": {
-                "type": "Navigate",
-                "destination": "info_page"
+                "type": "Single",
+                "action": {
+                  "type": "Navigate",
+                  "destination": "home"
+                }
               }
             }
           ]
@@ -195,14 +80,16 @@ val sampleConfigJson = """
           "id": "userNameField",
           "label": "Your Name",
           "hint": "Enter your name",
-          "initialValue": ""
+          "initialValue": "",
+          "width": "fillMaxSpace"
         },
         {
           "type": "TextField",
           "id": "emailField",
           "label": "Email Address",
           "hint": "Enter your email",
-          "initialValue": ""
+          "initialValue": "",
+          "width": "fillMaxSpace"
         },
         {
           "type": "Checkbox",
@@ -220,6 +107,11 @@ val sampleConfigJson = """
         {
           "type": "Row",
           "id": "actionRow",
+          "width": "fillMaxSpace",
+          "padding": {
+            "top": 8,
+            "bottom": 8
+          },
           "children": [
             {
               "type": "Button",
@@ -227,11 +119,23 @@ val sampleConfigJson = """
               "label": "Submit",
               "style": "tertiaryButton",
               "onClickAction": {
-                "type": "SubmitData",
-                "formData": {
-                  "name": "userNameField",
-                  "email": "emailField",
-                  "termsAccepted": "termsCheckBox"
+                "type": "Single",
+                "action": {
+                  "type": "ApiRequest",
+                  "requestModel": {
+                    "type": "Command",
+                    "action": "",
+                    "parameters": {
+                      
+                    },
+                    "headers": {
+                      
+                    },
+                    "endpoint": "register",
+                    "retries": 3,
+                    "timeout": 3000
+                  },
+                  "retryCount": 0
                 }
               }
             },
@@ -241,7 +145,11 @@ val sampleConfigJson = """
               "label": "Cancel",
               "style": "outlinedButton",
               "onClickAction": {
-                "type": "NoAction"
+                "type": "Single",
+                "action": {
+                  "type": "Navigate",
+                  "destination": "home"
+                }
               }
             }
           ]
@@ -262,7 +170,8 @@ val sampleConfigJson = """
           "type": "Switch",
           "id": "botSetting",
           "label": "Enable bot",
-          "isChecked": true
+          "isChecked": true,
+          "width": "fillMaxSpace"
         },
         {
           "type": "Divider",

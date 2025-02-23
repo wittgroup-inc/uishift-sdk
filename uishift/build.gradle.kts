@@ -63,6 +63,14 @@ dependencies {
     implementation(libs.json.org.everit.json.schema)
     implementation(libs.json)
 
+    // Navigation for Jetpack Compose
+    implementation(libs.androidx.navigation.compose)
+
+    // Optional: For using LiveData and ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    implementation(libs.retrofit2.retrofit)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
