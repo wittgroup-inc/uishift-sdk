@@ -5,6 +5,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.VisualTransformation
 import com.gowittgroup.uishift.theme.ThemeConfig.colorScheme
 
 @Composable
@@ -16,7 +17,8 @@ fun UiShiftTextField(
     hint: String,
     isEnabled: Boolean = true,
     readOnly: Boolean = false,
-    isError: Boolean = false
+    isError: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     TextField(
         value = value,
@@ -24,6 +26,7 @@ fun UiShiftTextField(
         readOnly = readOnly,
         isError = isError,
         onValueChange = onValueChange,
+        visualTransformation = visualTransformation,
         label = {
             Text(
                 label,

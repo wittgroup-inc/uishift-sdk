@@ -10,17 +10,17 @@ import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface ApiService {
-    @POST("{endpoint}") // Use a dynamic endpoint for commands
+    @POST("{endpoint}")
     suspend fun performCommand(
-        @Path("endpoint") endpoint: String, // Path parameter for the endpoint
-        @Body command: Request.Command // The command object to send in the body
+        @Path("endpoint") endpoint: String,
+        @Body command: Request.Command
     ): ApiResponse<Any>
 
-    @GET("{endpoint}") // Use a dynamic endpoint for queries
+    @GET("{endpoint}")
     suspend fun performQuery(
-        @Path("endpoint") endpoint: String, // Path parameter for the endpoint
-        @Query("query") query: String, // The query string as a query parameter
-        @QueryMap filters: Map<String, Any>? = null, // Optional filters as query parameters
-        @HeaderMap headers: Map<String, String>? = null // Optional headers
+        @Path("endpoint") endpoint: String,
+        @Query("query") query: String,
+        @QueryMap filters: Map<String, Any>? = null,
+        @HeaderMap headers: Map<String, String>? = null
     ): ApiResponse<Any>
 }
