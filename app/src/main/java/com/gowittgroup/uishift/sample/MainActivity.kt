@@ -36,7 +36,6 @@ import com.gowittgroup.uishift.data.ApiRepository
 import com.gowittgroup.uishift.data.ConfigRepositoryImpl
 import com.gowittgroup.uishift.network.ApiService
 import com.gowittgroup.uishift.sample.sampledata.local.detailScreenConfig
-import com.gowittgroup.uishift.sample.sampledata.local.homeScreenConfig
 import com.gowittgroup.uishift.sample.sampledata.sampleConfigJson
 import com.gowittgroup.uishift.sample.theme.UIShiftTheme
 import com.gowittgroup.uishift.screen.ScreenViewModel
@@ -100,7 +99,7 @@ private fun RegisterScreen(navController: NavHostController) {
 
 @Composable
 private fun HomeScreen(navController: NavHostController) {
-        val configRepository = ConfigRepositoryImpl(homeScreenConfig)
+        val configRepository = ConfigRepositoryImpl(sampleConfigJson)
         val apiRepository = ApiRepository(RetrofitInstance.apiService)
         ScreenRenderingEngine(
             ScreenViewModel(configRepository, apiRepository), navController

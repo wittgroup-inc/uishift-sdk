@@ -19,44 +19,44 @@ package com.gowittgroup.uishift.sample.sampledata.local
  */
 
 val detailScreenConfig = """
+{
+  "components": [
     {
-      "components": [
-        {
-          "type": "Text",
-          "content": "Detail Screen",
-          "style": "mainTitle",
-          "visualTransformation": "none",
-          "id": "screenTitle",
-          "padding": {
-            "top": 0,
-            "bottom": 0,
-            "start": 0,
-            "end": 0
-          },
-          "visibility": "visible",
-          "alignment": "start",
-          "interactions": {
-            
-          }
-        },
-        {
-          "type": "Text",
-          "content": "You successfully logged in!",
-          "style": "mainContent",
-          "visualTransformation": "none",
-          "id": "description",
-          "padding": {
-            "top": 0,
-            "bottom": 0,
-            "start": 0,
-            "end": 0
-          },
-          "visibility": "visible",
-          "alignment": "start",
-          "interactions": {
-            
-          }
-        }
-      ]
+      "type": "Text",
+      "content": "Detail Screen",
+      "style": "mainTitle",
+      "visualTransformation": "none",
+      "id": "screenTitle",
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "start": 0,
+        "end": 0
+      },
+      "visibility": "visible",
+      "alignment": "start",
+      "interactions": {
+        
+      }
+    },
+    {
+      "type": "Text",
+      "content": "You successfully logged in!",
+      "style": "mainContent",
+      "visualTransformation": "none",
+      "id": "description",
+      "padding": {
+        "top": 0,
+        "bottom": 0,
+        "start": 0,
+        "end": 0
+      },
+      "visibility": "visible",
+      "alignment": "start",
+      "interactions": {
+        
+      }
     }
+  ]
+}
 """.trimIndent()

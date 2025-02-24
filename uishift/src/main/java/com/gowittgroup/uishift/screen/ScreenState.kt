@@ -55,3 +55,15 @@ fun getComponentState(field: Field, state: ScreenState): ComponentState? {
         else -> null
     }
 }
+
+fun collectAllErrors(state: ScreenState): Map<String, List<String>> {
+    return listOf(
+        state.textFieldsState.mapValues { it.value.errorMessages },
+        state.checkBoxState.mapValues { it.value.errorMessages },
+        state.radioButtonState.mapValues { it.value.errorMessages },
+        state.switchState.mapValues { it.value.errorMessages },
+        state.sliderState.mapValues { it.value.errorMessages }
+    ).flatMap { it.entries }
+        .filter { it.value.isNotEmpty() }
+        .associate { it.key to it.value }
+}

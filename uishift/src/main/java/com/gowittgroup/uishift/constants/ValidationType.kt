@@ -1,11 +1,13 @@
 package com.gowittgroup.uishift.constants
 
 object ValidationType {
-    const val BASE = "BaseValidation"
-    const val TEXT = "TextValidation"
-    const val BOOLEAN = "BooleanValidation"
-    const val NUMERIC = "NumericValidation"
-    const val SELECTION = "SelectionValidation"
-    const val CUSTOM = "CustomValidation"
+    const val REQUIRED = "Required"
+    const val MIN_LENGTH = "MinLength"
+    const val MAX_LENGTH = "MaxLength"
+    const val REGEX = "Regex"
+    const val MIN_VALUE = "MinValue"
+    const val MAX_VALUE = "MaxValue"
+    const val SELECTION_REQUIRED = "SelectionRequired"
+    const val CUSTOM = "Custom" // Not in use
     const val NONE = "None"
 }

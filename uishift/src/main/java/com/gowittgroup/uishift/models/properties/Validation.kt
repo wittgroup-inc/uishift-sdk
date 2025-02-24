@@ -7,40 +7,56 @@ sealed class Validation {
     abstract val trigger: ValidationTrigger
 
     @JsonClass(generateAdapter = true)
-    data class Text(
-        val required: Boolean = false,
-        val minLength: Int? = null,
-        val maxLength: Int? = null,
-        val regex: String? = null,
-        val errorMessage: String? = null,
+    data class Required(
+        val errorMessage: String = "This field is required",
         override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT
     ) : Validation()
 
     @JsonClass(generateAdapter = true)
-    data class Binary(
-        val required: Boolean = false,
-        val errorMessage: String? = null,
+    data class MinLength(
+        val minLength: Int,
+        val errorMessage: String = "Minimum length required is $minLength",
         override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT
     ) : Validation()
 
     @JsonClass(generateAdapter = true)
-    data class Numeric(
-        val required: Boolean = false,
-        val minValue: Float? = null,
-        val maxValue: Float? = null,
-        val errorMessage: String? = null,
+    data class MaxLength(
+        val maxLength: Int,
+        val errorMessage: String = "Maximum length allowed is $maxLength",
         override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT
     ) : Validation()
 
     @JsonClass(generateAdapter = true)
-    data class Selection(
-        val required: Boolean = false,
-        val errorMessage: String? = null,
+    data class Regex(
+        val pattern: String,
+        val errorMessage: String = "Invalid format",
         override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT
     ) : Validation()
 
     @JsonClass(generateAdapter = true)
-    data class None(val none: String = "None", override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT) : Validation()
+    data class MinValue(
+        val minValue: Float,
+        val errorMessage: String = "Value must be at least $minValue",
+        override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT
+    ) : Validation()
+
+    @JsonClass(generateAdapter = true)
+    data class MaxValue(
+        val maxValue: Float,
+        val errorMessage: String = "Value must be at most $maxValue",
+        override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT
+    ) : Validation()
+
+    @JsonClass(generateAdapter = true)
+    data class SelectionRequired(
+        val errorMessage: String = "A selection is required",
+        override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT
+    ) : Validation()
+
+    @JsonClass(generateAdapter = true)
+    data class None(
+        override val trigger: ValidationTrigger = ValidationTrigger.ON_SUBMIT
+    ) : Validation()
 }
 
 

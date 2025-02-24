@@ -33,9 +33,11 @@ fun RenderSwitchComponent(
                     onIntent(ScreenIntent.UpdateSwitch(component.id, isChecked))
 
                     if (component.validations.any { it.trigger == ValidationTrigger.ON_VALUE_CHANGE }) {
-                        ScreenIntent.Validate(
-                            field = Field(id = component.id, type = ComponentType.SWITCH),
-                            validations = component.validations
+                        onIntent(
+                            ScreenIntent.Validate(
+                                field = Field(id = component.id, type = ComponentType.SWITCH),
+                                validations = component.validations
+                            )
                         )
                     }
                 }

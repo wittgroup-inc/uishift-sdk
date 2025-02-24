@@ -246,8 +246,10 @@ class ScreenViewModel(
     }
 
     private fun navigateTo(destination: String) {
-        viewModelScope.launch {
-            _navigationEventChannel.send(NavigationEvent.NavigateTo(destination))
+        if(collectAllErrors(uiState.value).isEmpty()){
+            viewModelScope.launch {
+                _navigationEventChannel.send(NavigationEvent.NavigateTo(destination))
+            }
         }
     }
 }

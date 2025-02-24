@@ -123,19 +123,14 @@ The following UI components are available for use in your configuration document
   - `type`: String (Has fixed value `Column`)
   - `children`: List<UIComponent> (List of child components)
   - `isScrollable`: Boolean (Default value `false`)
-  - `childArrangement`: ChildArrangement
+  - `childrenArrangement`: String (How children will arranged. Value can be `top` or `bottom` or `center` or `spaceBetween` or `spaceAround` or `spaceEvenly`, defaults to `top`)
+  - `childrenAlignment`: String (How children will aligned. Value can be `start` or `center` or `end`, defaults to `start`)
 
 ```json
 {
   "type": "Column",
   "children": [],
-  "isScrollable": false,
-  "childArrangement": {
-    "direction": "vertical",
-    "spacing": 8,
-    "alignment": "start",
-    "isWrap": false
-  }
+  "isScrollable": false
 }
 ```
 ### 5. RowComponent
@@ -144,7 +139,8 @@ The following UI components are available for use in your configuration document
   - `type`: String (Has fixed value `Row`)
   - `children`: List<UIComponent> (List of child components)
   - `isScrollable`: Boolean (Default value `false`)
-  - `childArrangement`: ChildArrangement (How children will arranged)
+  - `childrenArrangement`: String (How children will arranged. Value can be `start` or `center` or `end` or `spaceBetween` or `spaceAround` or `spaceEvenly`, defaults to `start`)
+  - `childrenAlignment`: String (How children will aligned. Value can be `top` or `bottom` or `center` or `end`, defaults to `top`)
 
 ```json
 {
@@ -165,7 +161,7 @@ The following UI components are available for use in your configuration document
   - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
   - `readOnly`: Boolean (Whether editable, defaults to `true`)
   - `initialValue`: String (The default value, defaults to empty)
-  - `validation`: Validation (Takes validation object)
+  - `validations`: [Validation] (Takes list validation object)
   - `imeAction`: ImeAction (IMEAction, value can be `done`, `go` `search`, `send` and `next` defaults to `done`),
   - `keyboardType`: KeyboardType (Which keyboard should appear, defaults to `text`) ),
   - `visualTransformation`: String (How text should transform, value can be `none` or `password` or `capitalize`)
@@ -199,7 +195,7 @@ The following UI components are available for use in your configuration document
   - `label`: String (The label for the checkbox)
   - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
   - `isChecked`: Boolean (Whether the checkbox is checked, defaults to false)
-  - `validation`: Validation (Takes validation object)
+  - `validations`: [Validation] (Takes list validation object)
 
 ```json
 {
@@ -223,7 +219,7 @@ The following UI components are available for use in your configuration document
   - `max`: Float (Maximum value of the slider)
   - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
   - `initialValue`: Float (Initial value of the slider)
-  - `validation`: Validation (Takes validation object)
+  - `validations`: [Validation] (Takes list validation object)
 
 ```json
 {
@@ -249,7 +245,7 @@ The following UI components are available for use in your configuration document
   - `label`: String (The label for the radio button)
   - `isEnabled`: Boolean (Whether enabled or disabled, defaults to `true`)
   - `isSelected`: Boolean (Whether the radio button is selected, defaults to false)
-  - `validation`: Validation (Takes validation object)
+  - `validations`: [Validation] (Takes list validation object)
 
 ```json
 {
@@ -334,6 +330,7 @@ The following actions can be performed in response to UI events:
 ### 1. Navigate
 
 - **Properties**:
+  - `type`: String (Has fixed value `Navigate`)
   - `destination`: String (The destination to navigate to)
   - `params`: Map<String, String> (Key-value pairs of params)
 
@@ -350,6 +347,7 @@ The following actions can be performed in response to UI events:
 ### 2. ApiRequest
 
 - **Properties**:
+  - `type`: String (Has fixed value `ApiRequest`)
   - `requestModel`: Request (Contains request data)
   - `retryCount`: Number
   - `onRetry`: Action (Optional)
@@ -382,8 +380,9 @@ The following actions can be performed in response to UI events:
 ### 3. Validate
 
 - **Properties**:
+  - `type`: String (Has fixed value `Validate`)
   - `field`: Field (The ID of the field to validate)
-  - `validation`: Validation
+  - `validations`: [Validation] (List of validations to perform)
   - `onValidationFail`: Action (Action to perform if validation fails. Optional)
 
 ```json
@@ -396,9 +395,7 @@ The following actions can be performed in response to UI events:
       "key": "value"
     }
   },
-  "validation": {
-    
-  },
+  "validations": [],
   "onValidationFail": {
   }
 }
@@ -407,6 +404,7 @@ The following actions can be performed in response to UI events:
 ### 4. ShowError
 
 - **Properties**:
+  - `type`: String (Has fixed value `ShowError`)
   - `message`: String
   - `prefixes` [Action] (Defaults to empty)
   - `postfixes`: [Action] (Defaults to empty)
@@ -425,6 +423,7 @@ The following actions can be performed in response to UI events:
 ### 5. ShowSuccessMessage
 
 - **Properties**:
+  - `type`: String (Has fixed value `ShowSuccessMessage`)
   - `message`: String
   - `prefixes` [Action] (Defaults to empty)
   - `postfixes`: [Action] (Defaults to empty)
@@ -489,41 +488,68 @@ The following actions can be performed in response to UI events:
 
 
 
-## Validation Overview
+# Validation Overview
 
-### 1. Text
+## 1. Required
+Ensures that a field is not empty.
 
-- **Properties**:
-  - `required`: Boolean
-  - `minLength`: Number (Optional)
-  - `maxLength`: Number (Optional)
-  - `regex`:  String (Optional)
+### Properties:
+  - `type`: String (Has fixed value `Required`))
   - `errorMessage`: String (Optional)
+  - `trigger`: String (value can be `onValueChange` or `onBlur` or `onSubmit`, defaults to `onSubmit`)
 
-### 2. Binary
+## 2. MinLength
+Validates that a text field meets the minimum character length.
 
-- **Properties**:
-  - `required`: Boolean
+### Properties:
+  - `type`: String (Has fixed value `MinLength`))
+  - `minLength`: Number (Required)
   - `errorMessage`: String (Optional)
+  - `trigger`: String (value can be `onValueChange` or `onBlur` or `onSubmit`, defaults to `onSubmit`)
 
-### 3. Numeric
+## 3. MaxLength
+Ensures that a text field does not exceed a maximum length.
 
-- **Properties**:
-  - `required`: Boolean
-  - `minValue`: Number (Optional)
-  - `maxValue`: Number (Optional)
-  - `errorMessage`: String (Optional)`
-### 4. Selection
-
-- **Properties**:
-  - `required`: Boolean
+### Properties:
+  - `type`: String (Has fixed value `MaxLength`))
+  - `maxLength`: Number (Required)
   - `errorMessage`: String (Optional)
+  - `trigger`: String (value can be `onValueChange` or `onBlur` or `onSubmit`, defaults to `onSubmit`)
 
-### 5. None
+## 4. Regex
+Validates a text field against a regular expression pattern.
 
-- **Properties**:
-  - `none`: String (Defaults to `None`)
+### Properties:
+  - `type`: String (Has fixed value `Regex`)
+  - `pattern`: String (Required)
+  - `errorMessage`: String (Optional)
+  - `trigger`: String (value can be `onValueChange` or `onBlur` or `onSubmit`, defaults to `onSubmit`)
 
+## 5. MinValue
+Ensures that a numeric field meets a minimum value.
+
+### Properties:
+  - `type`: String (Has fixed value `MinValue`)
+  - `minValue`: Number (Required)
+  - `errorMessage`: String (Optional)
+  - `trigger`: String (value can be `onValueChange` or `onBlur` or `onSubmit`, defaults to `onSubmit`)
+
+## 6. MaxValue
+Ensures that a numeric field does not exceed a maximum value.
+
+### Properties:
+  - `type`: String (Has fixed value `MaxValue`)
+  - `maxValue`: Number (Required)
+  - `errorMessage`: String (Optional)
+  - `trigger`: String (value can be `onValueChange` or `onBlur` or `onSubmit`, defaults to `onSubmit`)
+
+## 7. SelectionRequired
+Ensures that a selection (radio button, checkbox, dropdown) is made.
+
+### Properties:
+  - `type`: String (Has fixed value `SelectionRequired`)
+  - `errorMessage`: String (Optional)
+  - `trigger`: String (value can be `onValueChange` or `onBlur` or `onSubmit`, defaults to `onSubmit`)
 
 ## Styles Overview
 

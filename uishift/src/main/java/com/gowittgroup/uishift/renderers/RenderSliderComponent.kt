@@ -28,9 +28,11 @@ fun RenderSliderComponent(
                     onIntent(ScreenIntent.UpdateSlider(component.id, newValue))
 
                     if (component.validations.any { it.trigger == ValidationTrigger.ON_VALUE_CHANGE }) {
-                        ScreenIntent.Validate(
-                            field = Field(id = component.id, type = ComponentType.SLIDER),
-                            validations = component.validations
+                        onIntent(
+                            ScreenIntent.Validate(
+                                field = Field(id = component.id, type = ComponentType.SLIDER),
+                                validations = component.validations
+                            )
                         )
                     }
                 },

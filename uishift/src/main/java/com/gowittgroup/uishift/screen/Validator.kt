@@ -10,10 +10,13 @@ object Validator {
 
         validations.forEach { validation ->
             when (validation) {
-                is Validation.Text -> errors += validateText(field, value as? String, validation)
-                is Validation.Binary -> errors += validateBoolean(field, value as? Boolean, validation)
-                is Validation.Numeric -> errors += validateNumeric(field, value as? Float, validation)
-                is Validation.Selection -> errors += validateSelection(field, value as? Boolean, validation)
+                is Validation.Required -> errors += validateRequired(field, value, validation)
+                is Validation.MinLength -> errors += validateMinLength(field, value as? String, validation)
+                is Validation.MaxLength -> errors += validateMaxLength(field, value as? String, validation)
+                is Validation.Regex -> errors += validateRegex(field, value as? String, validation)
+                is Validation.MinValue -> errors += validateMinValue(field, value as? Float, validation)
+                is Validation.MaxValue -> errors += validateMaxValue(field, value as? Float, validation)
+                is Validation.SelectionRequired -> errors += validateSelection(field, value as? Boolean, validation)
                 is Validation.None -> {} // No validation required
             }
         }
@@ -21,54 +24,57 @@ object Validator {
         return errors
     }
 
-    private fun validateText(field: Field, value: String?, validation: Validation.Text): List<String> {
-        val errors = mutableListOf<String>()
-
-        if (validation.required && value.isNullOrEmpty()) {
-            errors.add("${field.id}: ${validation.errorMessage ?: "This field is required."}")
-        }
-        if (!value.isNullOrEmpty()) {
-            if (validation.minLength != null && value.length < validation.minLength) {
-                errors.add("${field.id}: ${validation.errorMessage ?: "Minimum length is ${validation.minLength}."}")
-            }
-            if (validation.maxLength != null && value.length > validation.maxLength) {
-                errors.add("${field.id}: ${validation.errorMessage ?: "Maximum length is ${validation.maxLength}."}")
-            }
-            if (validation.regex != null && !Regex(validation.regex).matches(value)) {
-                errors.add("${field.id}: ${validation.errorMessage ?: "Invalid format."}")
-            }
-        }
-        return errors
-    }
-
-    private fun validateBoolean(field: Field, value: Boolean?, validation: Validation.Binary): List<String> {
-        return if (validation.required && value != true) {
-            listOf("${field.id}: ${validation.errorMessage ?: "This field must be checked."}")
+    private fun validateRequired(field: Field, value: Any?, validation: Validation.Required): List<String> {
+        return if (value == null || (value is String && value.isEmpty())) {
+            listOf("${field.id}: ${validation.errorMessage}")
         } else {
             emptyList()
         }
     }
 
-    private fun validateNumeric(field: Field, value: Float?, validation: Validation.Numeric): List<String> {
-        val errors = mutableListOf<String>()
-
-        if (validation.required && value == null) {
-            errors.add("${field.id}: ${validation.errorMessage ?: "This field is required."}")
+    private fun validateMinLength(field: Field, value: String?, validation: Validation.MinLength): List<String> {
+        return if (value != null && value.length < validation.minLength) {
+            listOf("${field.id}: ${validation.errorMessage}")
+        } else {
+            emptyList()
         }
-        if (value != null) {
-            if (validation.minValue != null && value < validation.minValue) {
-                errors.add("${field.id}: ${validation.errorMessage ?: "Value must be at least ${validation.minValue}."}")
-            }
-            if (validation.maxValue != null && value > validation.maxValue) {
-                errors.add("${field.id}: ${validation.errorMessage ?: "Value must not exceed ${validation.maxValue}."}")
-            }
-        }
-        return errors
     }
 
-    private fun validateSelection(field: Field, value: Boolean?, validation: Validation.Selection): List<String> {
-        return if (validation.required && value != true) {
-            listOf("${field.id}: ${validation.errorMessage ?: "Selection is required."}")
+    private fun validateMaxLength(field: Field, value: String?, validation: Validation.MaxLength): List<String> {
+        return if (value != null && value.length > validation.maxLength) {
+            listOf("${field.id}: ${validation.errorMessage}")
+        } else {
+            emptyList()
+        }
+    }
+
+    private fun validateRegex(field: Field, value: String?, validation: Validation.Regex): List<String> {
+        return if (value != null && !Regex(validation.pattern).matches(value)) {
+            listOf("${field.id}: ${validation.errorMessage}")
+        } else {
+            emptyList()
+        }
+    }
+
+    private fun validateMinValue(field: Field, value: Float?, validation: Validation.MinValue): List<String> {
+        return if (value != null && value < validation.minValue) {
+            listOf("${field.id}: ${validation.errorMessage}")
+        } else {
+            emptyList()
+        }
+    }
+
+    private fun validateMaxValue(field: Field, value: Float?, validation: Validation.MaxValue): List<String> {
+        return if (value != null && value > validation.maxValue) {
+            listOf("${field.id}: ${validation.errorMessage}")
+        } else {
+            emptyList()
+        }
+    }
+
+    private fun validateSelection(field: Field, value: Boolean?, validation: Validation.SelectionRequired): List<String> {
+        return if (value != true) {
+            listOf("${field.id}: ${validation.errorMessage}")
         } else {
             emptyList()
         }

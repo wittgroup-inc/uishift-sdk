@@ -37,6 +37,15 @@ fun RenderTextFieldComponent(
             readOnly = component.readOnly,
             onValueChange = { newText ->
                 onIntent(ScreenIntent.UpdateTextField(component.id, newText))
+
+                if (component.validations.any { it.trigger == ValidationTrigger.ON_VALUE_CHANGE }) {
+                    onIntent(
+                        ScreenIntent.Validate(
+                            field = Field(id = component.id, type = ComponentType.TEXT_FIELD),
+                            validations = component.validations
+                        )
+                    )
+                }
             },
             label = component.label,
             hint = component.hint,
@@ -44,9 +53,11 @@ fun RenderTextFieldComponent(
                 .focusRequester(focusRequester)
                 .onFocusChanged { focusState ->
                     if (!focusState.isFocused && component.validations.any { it.trigger == ValidationTrigger.ON_BLUR }) {
-                        ScreenIntent.Validate(
-                            field = Field(id = component.id, type = ComponentType.TEXT_FIELD),
-                            validations = component.validations
+                        onIntent(
+                            ScreenIntent.Validate(
+                                field = Field(id = component.id, type = ComponentType.TEXT_FIELD),
+                                validations = component.validations
+                            )
                         )
                     }
                     isFocused = focusState.isFocused

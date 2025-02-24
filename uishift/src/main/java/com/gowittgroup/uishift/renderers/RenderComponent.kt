@@ -181,7 +181,7 @@ fun handleAction(action: Action): ScreenIntent {
 
         is Action.Validate -> {
             Log.d(TAG, "Action: Validate fieldId: ${action.field}")
-            ScreenIntent.Validate(action.field, listOf(action.validation))
+            ScreenIntent.Validate(action.field, action.validations)
         }
 
         is Action.ShowError -> {

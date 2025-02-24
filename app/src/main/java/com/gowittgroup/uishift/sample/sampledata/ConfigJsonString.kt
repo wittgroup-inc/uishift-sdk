@@ -42,6 +42,7 @@ val sampleConfigJson = """
           "type": "Row",
           "id": "buttonRow",
           "width": "fillMaxSpace",
+          "childrenArrangement": "center",
           "padding": {
             "top": 8,
             "bottom": 8
@@ -59,6 +60,12 @@ val sampleConfigJson = """
                   "destination": "home"
                 }
               }
+            },
+            {
+              "type": "Spacer",
+              "id": "space_between_start_now_and_more_info",
+              "direction": "horizontal",
+              "width": 16
             },
             {
               "type": "Button",
@@ -81,7 +88,18 @@ val sampleConfigJson = """
           "label": "Your Name",
           "hint": "Enter your name",
           "initialValue": "",
-          "width": "fillMaxSpace"
+          "width": "fillMaxSpace",
+          "validations": [
+            {
+              "type": "Required",
+              "trigger": "onValueChange"
+            },
+            {
+              "type": "MinLength",
+              "minLength": 3,
+              "trigger": "onValueChange"
+            }
+          ]
         },
         {
           "type": "TextField",
@@ -89,7 +107,18 @@ val sampleConfigJson = """
           "label": "Email Address",
           "hint": "Enter your email",
           "initialValue": "",
-          "width": "fillMaxSpace"
+          "width": "fillMaxSpace",
+          "validations": [
+            {
+              "type": "Required",
+              "trigger": "onValueChange"
+            },
+            {
+              "type": "Regex",
+              "pattern": "^[^@]+@[^@]+\\.[^@]+${'$'}",
+              "trigger": "onValueChange"
+            }
+          ]
         },
         {
           "type": "Checkbox",
@@ -108,6 +137,7 @@ val sampleConfigJson = """
           "type": "Row",
           "id": "actionRow",
           "width": "fillMaxSpace",
+          "childrenArrangement": "spaceBetween",
           "padding": {
             "top": 8,
             "bottom": 8
