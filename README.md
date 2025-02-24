@@ -614,6 +614,13 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
       "type": "Column",
       "id": "mainColumn",
       "isScrollable": true,
+      "width": "fillMaxSpace",
+      "padding": {
+        "top": 16,
+        "bottom": 16,
+        "start": 16,
+        "end": 16
+      },
       "children": [
         {
           "type": "Text",
@@ -625,7 +632,10 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "type": "Text",
           "id": "appDescription",
           "content": "This application helps you manage your tasks efficiently.",
-          "style": "mainContent"
+          "style": "mainContent",
+          "padding": {
+            "bottom": 24
+          }
         },
         {
           "type": "Image",
@@ -639,12 +649,17 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "type": "Row",
           "id": "buttonRow",
           "width": "fillMaxSpace",
+          "childrenArrangement": "center",
+          "padding": {
+            "top": 8,
+            "bottom": 8
+          },
           "children": [
             {
               "type": "Button",
-              "id": "infoButton",
-              "label": "More Info",
-              "style": "secondaryButton",
+              "id": "startButton",
+              "label": "Start Now",
+              "style": "primaryButton",
               "onClickAction": {
                 "type": "Single",
                 "action": {
@@ -654,10 +669,16 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
               }
             },
             {
+              "type": "Spacer",
+              "id": "space_between_start_now_and_more_info",
+              "direction": "horizontal",
+              "width": 16
+            },
+            {
               "type": "Button",
-              "id": "startButton",
-              "label": "Start Now",
-              "style": "primaryButton",
+              "id": "infoButton",
+              "label": "More Info",
+              "style": "secondaryButton",
               "onClickAction": {
                 "type": "Single",
                 "action": {
@@ -674,7 +695,18 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "label": "Your Name",
           "hint": "Enter your name",
           "initialValue": "",
-          "width": "fillMaxSpace"
+          "width": "fillMaxSpace",
+          "validations": [
+            {
+              "type": "Required",
+              "trigger": "onValueChange"
+            },
+            {
+              "type": "MinLength",
+              "minLength": 3,
+              "trigger": "onValueChange"
+            }
+          ]
         },
         {
           "type": "TextField",
@@ -682,7 +714,18 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "label": "Email Address",
           "hint": "Enter your email",
           "initialValue": "",
-          "width": "fillMaxSpace"
+          "width": "fillMaxSpace",
+          "validations": [
+            {
+              "type": "Required",
+              "trigger": "onValueChange"
+            },
+            {
+              "type": "Regex",
+              "pattern": "^[^@]+@[^@]+\\.[^@]+${'$'}",
+              "trigger": "onValueChange"
+            }
+          ]
         },
         {
           "type": "Checkbox",
@@ -701,6 +744,11 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "type": "Row",
           "id": "actionRow",
           "width": "fillMaxSpace",
+          "childrenArrangement": "spaceBetween",
+          "padding": {
+            "top": 8,
+            "bottom": 8
+          },
           "children": [
             {
               "type": "Button",
@@ -759,7 +807,8 @@ Here's how youcan create a valid JSON document for a `ScreenConfiguration`.
           "type": "Switch",
           "id": "botSetting",
           "label": "Enable bot",
-          "isChecked": true
+          "isChecked": true,
+          "width": "fillMaxSpace"
         },
         {
           "type": "Divider",
