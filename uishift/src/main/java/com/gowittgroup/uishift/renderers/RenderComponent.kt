@@ -63,68 +63,60 @@ fun RenderComponent(
         is TextFieldComponent -> {
             Log.d(TAG, "Rendering TextFieldComponent with id: ${component.id}")
             RenderTextFieldComponent(
-                state = screenState.textFieldsState.getOrDefault(component.id, ComponentState.TextFieldState()),
+                state = screenState.textFieldsState.getOrDefault(
+                    component.id,
+                    ComponentState.TextFieldState()
+                ),
                 component = component,
-                visualTransformation = component.visualTransformation,
-                onValueChange = { newText ->
-                    Log.d(TAG, "TextFieldComponent id: ${component.id} updated with: $newText")
-                    onIntent(ScreenIntent.UpdateTextField(component.id, newText))
-                }
+                onIntent = onIntent
             )
         }
 
         is CheckBoxComponent -> {
             Log.d(TAG, "Rendering CheckBoxComponent with id: ${component.id}")
             RenderCheckBoxComponent(
-                state = screenState.checkBoxState.getOrDefault(component.id, ComponentState.CheckBoxState()),
+                state = screenState.checkBoxState.getOrDefault(
+                    component.id,
+                    ComponentState.CheckBoxState()
+                ),
                 component = component,
-                onCheckedChange = { isChecked ->
-                    Log.d(TAG, "CheckBoxComponent id: ${component.id} changed to: $isChecked")
-                    onIntent(ScreenIntent.UpdateCheckBox(component.id, isChecked))
-                }
+                onIntent = onIntent
             )
         }
 
         is RadioButtonComponent -> {
             Log.d(TAG, "Rendering RadioButtonComponent with id: ${component.id}")
             RenderRadioButtonComponent(
-                state = screenState.radioButtonState.getOrDefault(component.id, ComponentState.RadioButtonState()),
+                state = screenState.radioButtonState.getOrDefault(
+                    component.id,
+                    ComponentState.RadioButtonState()
+                ),
                 component = component,
-                onClick = {
-                    val isSelected = screenState.radioButtonState.getOrDefault(
-                        component.id,
-                        component.isSelected
-                    ) as Boolean
-                    Log.d(
-                        TAG,
-                        "RadioButtonComponent id: ${component.id} changed to: ${!(isSelected)}"
-                    )
-                    onIntent(ScreenIntent.UpdateRadioButton(component.id, !isSelected))
-                }
+                onIntent = onIntent
             )
         }
 
         is SwitchComponent -> {
             Log.d(TAG, "Rendering SwitchComponent with id: ${component.id}")
             RenderSwitchComponent(
-                state = screenState.switchState.getOrDefault(component.id, ComponentState.SwitchState()),
+                state = screenState.switchState.getOrDefault(
+                    component.id,
+                    ComponentState.SwitchState()
+                ),
                 component = component,
-                onCheckedChange = { isChecked ->
-                    Log.d(TAG, "SwitchComponent id: ${component.id} changed to: $isChecked")
-                    onIntent(ScreenIntent.UpdateSwitch(component.id, isChecked))
-                }
+                onIntent = onIntent
             )
         }
 
         is SliderComponent -> {
             Log.d(TAG, "Rendering SliderComponent with id: ${component.id}")
             RenderSliderComponent(
-                state = screenState.sliderState.getOrDefault(component.id, ComponentState.SliderState()),
+                state = screenState.sliderState.getOrDefault(
+                    component.id,
+                    ComponentState.SliderState()
+                ),
                 component = component,
-                onValueChange = { newValue ->
-                    Log.d(TAG, "SliderComponent id: ${component.id} changed to: $newValue")
-                    onIntent(ScreenIntent.UpdateSlider(component.id, newValue))
-                }
+                onIntent = onIntent
             )
         }
 
@@ -189,7 +181,7 @@ fun handleAction(action: Action): ScreenIntent {
 
         is Action.Validate -> {
             Log.d(TAG, "Action: Validate fieldId: ${action.field}")
-            ScreenIntent.Validate(action.field, action.validation)
+            ScreenIntent.Validate(action.field, action.validations)
         }
 
         is Action.ShowError -> {

@@ -7,31 +7,31 @@ sealed class ComponentState {
     data class TextFieldState(
         val value: String = "",
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 
     data class CheckBoxState(
         val isChecked: Boolean = false,
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 
     data class SwitchState(
         val isChecked: Boolean = false,
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 
     data class RadioButtonState(
         val selected: Boolean = false,
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 
     data class SliderState(
         val value: Float = 0.0f,
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 }
 
@@ -54,4 +54,16 @@ fun getComponentState(field: Field, state: ScreenState): ComponentState? {
         ComponentType.SLIDER -> state.sliderState[field.id]
         else -> null
     }
+}
+
+fun collectAllErrors(state: ScreenState): Map<String, List<String>> {
+    return listOf(
+        state.textFieldsState.mapValues { it.value.errorMessages },
+        state.checkBoxState.mapValues { it.value.errorMessages },
+        state.radioButtonState.mapValues { it.value.errorMessages },
+        state.switchState.mapValues { it.value.errorMessages },
+        state.sliderState.mapValues { it.value.errorMessages }
+    ).flatMap { it.entries }
+        .filter { it.value.isNotEmpty() }
+        .associate { it.key to it.value }
 }

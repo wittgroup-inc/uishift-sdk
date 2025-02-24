@@ -17,7 +17,7 @@ data class SwitchComponent(
     val label: String,
     val isChecked: Boolean,
     val isEnabled: Boolean = true,
-    val validation: Validation = Validation.None(),
+    val validations: List<Validation> = listOf(),
     override val id: String,
     override val padding: Padding = Padding(),
     override val background: Background? = null,

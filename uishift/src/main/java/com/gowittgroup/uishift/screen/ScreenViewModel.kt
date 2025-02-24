@@ -138,7 +138,7 @@ class ScreenViewModel(
             is ScreenIntent.ShowSuccess -> Log.d(TAG, "Showing success message: ${intent.message}")
             is ScreenIntent.ShowError -> Log.e(TAG, "Showing error message: ${intent.field}")
             is ScreenIntent.SubmitForm -> submitForm(uiState.value)
-            is ScreenIntent.Validate -> validateField(intent.field, intent.validation)
+            is ScreenIntent.Validate -> validateField(intent.field, intent.validations)
         }
     }
 
@@ -146,34 +146,35 @@ class ScreenViewModel(
         id: String,
         value: T,
         type: String,
-        isValid: Boolean = true,
-        errorMsg: String = ""
+        errors: List<String> = emptyList()
     ) {
+        val isValid = errors.isEmpty()  // ✅ Automatically determine validity
+
         _uiState.update { state ->
             when (type) {
                 ComponentType.TEXT_FIELD -> state.copy(
                     textFieldsState = state.textFieldsState.toMutableMap().apply {
-                        put(id, ComponentState.TextFieldState(value as String, isValid, errorMsg))
+                        put(id, ComponentState.TextFieldState(value as String, isValid, errors))
                     }
                 )
                 ComponentType.CHECKBOX -> state.copy(
                     checkBoxState = state.checkBoxState.toMutableMap().apply {
-                        put(id, ComponentState.CheckBoxState(value as Boolean, isValid, errorMsg))
+                        put(id, ComponentState.CheckBoxState(value as Boolean, isValid, errors))
                     }
                 )
                 ComponentType.RADIO_BUTTON -> state.copy(
                     radioButtonState = state.radioButtonState.toMutableMap().apply {
-                        put(id, ComponentState.RadioButtonState(value as Boolean, isValid, errorMsg))
+                        put(id, ComponentState.RadioButtonState(value as Boolean, isValid, errors))
                     }
                 )
                 ComponentType.SWITCH -> state.copy(
                     switchState = state.switchState.toMutableMap().apply {
-                        put(id, ComponentState.SwitchState(value as Boolean, isValid, errorMsg))
+                        put(id, ComponentState.SwitchState(value as Boolean, isValid, errors))
                     }
                 )
                 ComponentType.SLIDER -> state.copy(
                     sliderState = state.sliderState.toMutableMap().apply {
-                        put(id, ComponentState.SliderState(value as Float, isValid, errorMsg))
+                        put(id, ComponentState.SliderState(value as Float, isValid, errors))
                     }
                 )
                 else -> state
@@ -181,37 +182,31 @@ class ScreenViewModel(
         }
     }
 
-    private fun validateField(field: Field, validation: Validation): Boolean {
+
+    private fun validateField(field: Field, validations: List<Validation>): Boolean {
         val componentState = getComponentState(field) ?: run {
             Log.e(TAG, "Component state not found for field ${field.id}. Cannot validate.")
-            return false // Return false if the component state is not found
+            return false
         }
 
-        val isValid = when (validation) {
-            is Validation.Text -> validateText(field, getValue(componentState), validation)
-            is Validation.Binary -> validateBoolean(field, getValue(componentState), validation)
-            is Validation.Numeric -> validateNumeric(field, getValue(componentState), validation)
-            is Validation.Selection -> validateSelection(field, getValue(componentState), validation)
-            is Validation.None -> true // No validation required
+        val value: Any? = when (componentState) {
+            is ComponentState.TextFieldState -> componentState.value
+            is ComponentState.CheckBoxState -> componentState.isChecked
+            is ComponentState.RadioButtonState -> componentState.selected
+            is ComponentState.SwitchState -> componentState.isChecked
+            is ComponentState.SliderState -> componentState.value
+            else -> null
         }
 
-        Log.d(TAG, "Validation result for field ${field.id}: $isValid")
-        if (!isValid) {
-            Log.e(TAG, "Field ${field.id} is invalid with current value: $componentState")
+        if (value == null) {
+            Log.e(TAG, "Validation failed: No valid value found for field ${field.id}.")
+            return false
         }
 
-        return isValid
-    }
+        val errors = Validator.validateField(field, value, validations)
+        updateComponentState(field.id, value, field.type, errors)
 
-    @Suppress("UNCHECKED_CAST")
-    private fun <T> getValue(componentState: ComponentState): T {
-        return when (componentState) {
-            is ComponentState.CheckBoxState -> componentState.isChecked as T
-            is ComponentState.RadioButtonState -> componentState.selected as T
-            is ComponentState.SliderState -> componentState.value as T
-            is ComponentState.SwitchState -> componentState.isChecked as T
-            is ComponentState.TextFieldState -> componentState.value as T
-        }
+        return errors.isEmpty()
     }
 
     private fun getComponentState(field: Field): ComponentState? {
@@ -224,76 +219,6 @@ class ScreenViewModel(
             else -> null
         }
     }
-
-    // extract below function as Validator class
-
-    private fun validateText(field: Field, value: String?, validation: Validation.Text): Boolean {
-        if (validation.required && value.isNullOrEmpty()) {
-            updateComponentState(field.id, value ?: "", field.type, false, "Text is required")
-            return false
-        }
-
-        value?.let {
-            if (validation.minLength != null && it.length < validation.minLength) {
-                updateComponentState(field.id, it, field.type, false, "Minimum length is ${validation.minLength}")
-                return false
-            }
-
-            if (validation.maxLength != null && it.length > validation.maxLength) {
-                updateComponentState(field.id, it, field.type, false, "Maximum length is ${validation.maxLength}")
-                return false
-            }
-
-            if (validation.regex != null && !Regex(validation.regex).matches(it)) {
-                updateComponentState(field.id, it, field.type, false, "Value does not match the required pattern")
-                return false
-            }
-        }
-
-        updateComponentState(field.id, value ?: "", field.type, true)
-        return true
-    }
-
-    private fun validateBoolean(field: Field, value: Boolean?, validation: Validation.Binary): Boolean {
-        if (validation.required && value != true) {
-            updateComponentState(field.id, value ?: false, field.type, false, "Boolean field is required")
-            return false
-        }
-        updateComponentState(field.id, value ?: false, field.type, true)
-        return true
-    }
-
-    private fun validateNumeric(field: Field, value: Float?, validation: Validation.Numeric): Boolean {
-        if (validation.required && value == null) {
-            updateComponentState(field.id, value ?: 0f, field.type, false, "Numeric field is required")
-            return false
-        }
-
-        value?.let {
-            if (validation.minValue != null && it < validation.minValue) {
-                updateComponentState(field.id, it, field.type, false, "Value must be at least ${validation.minValue}")
-                return false
-            }
-
-            if (validation.maxValue != null && it > validation.maxValue) {
-                updateComponentState(field.id, it, field.type, false, "Value must not exceed ${validation.maxValue}")
-                return false
-            }
-        }
-
-        updateComponentState(field.id, value ?: 0f, field.type, true)
-        return true
-    }
-
-    private fun validateSelection(field: Field, value: Boolean?, validation: Validation.Selection): Boolean {
-        if (validation.required && value != true) {
-            updateComponentState(field.id, value ?: false, field.type, false, "Selection is required")
-            return false
-        }
-        updateComponentState(field.id, value ?: false, field.type, true)
-        return true
-    }
-
 
     private fun executeApiRequest(request: Request) {
         Log.d(TAG, "Executing API request: $request")
@@ -321,8 +246,10 @@ class ScreenViewModel(
     }
 
     private fun navigateTo(destination: String) {
-        viewModelScope.launch {
-            _navigationEventChannel.send(NavigationEvent.NavigateTo(destination))
+        if(collectAllErrors(uiState.value).isEmpty()){
+            viewModelScope.launch {
+                _navigationEventChannel.send(NavigationEvent.NavigateTo(destination))
+            }
         }
     }
 }
