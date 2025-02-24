@@ -54,11 +54,12 @@ val registerScreenConfig = """
           "initialValue": "",
           "isEnabled": true,
           "readOnly": false,
-          "validation": {
+          "validations": [{
             "type": "TextValidation",
             "required": false,
-            "regex": "^[^@]+@[^@]+\\.[^@]+${'$'}"
-          },
+            "regex": "^[^@]+@[^@]+\\.[^@]+${'$'}",
+            "trigger": "onValueChange"
+          }],
           "imeAction": "done",
           "keyboardType": "text",
           "id": "emailField",
@@ -198,8 +199,7 @@ val registerScreenConfig = """
               "alignment": "start",
               "interactions": {
                 
-              },
-              "height": 60
+              }
             },
             {
               "type": "Button",
@@ -228,12 +228,7 @@ val registerScreenConfig = """
             }
           ],
           "isScrollable": false,
-          "childArrangement": {
-            "direction": "VERTICAL",
-            "spacing": 8,
-            "alignment": "START",
-            "isWrap": false
-          },
+          "childArrangement": "center",
           "id": "buttons",
           "padding": {
             "top": 0,

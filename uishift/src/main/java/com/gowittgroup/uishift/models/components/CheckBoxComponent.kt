@@ -18,7 +18,7 @@ data class CheckBoxComponent(
     val label: String,
     val isChecked: Boolean = false,
     val isEnabled: Boolean = true,
-    val validation: Validation = Validation.None(),
+    val validations: List<Validation> = listOf(),
     override val id: String,
     override val padding: Padding = Padding(),
     override val background: Background? = null,

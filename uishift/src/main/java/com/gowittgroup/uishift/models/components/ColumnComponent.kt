@@ -1,7 +1,7 @@
 package com.gowittgroup.uishift.models.components
 
-
-import com.gowittgroup.uishift.models.properties.ChildArrangement
+import com.gowittgroup.uishift.models.properties.HorizontalAlignment
+import com.gowittgroup.uishift.models.properties.VerticalArrangement
 import com.gowittgroup.uishift.models.properties.common.Accessibility
 import com.gowittgroup.uishift.models.properties.common.Alignment
 import com.gowittgroup.uishift.models.properties.common.Interactions
@@ -17,7 +17,8 @@ import com.squareup.moshi.JsonClass
 data class ColumnComponent(
     val children: List<UIComponent>,
     val isScrollable: Boolean = false,
-    val childArrangement: ChildArrangement = ChildArrangement(),
+    val childrenArrangement: VerticalArrangement = VerticalArrangement.TOP,
+    val childrenAlignment: HorizontalAlignment = HorizontalAlignment.START,
     override val id: String,
     override val padding: Padding = Padding(),
     override val background: Background? = null,

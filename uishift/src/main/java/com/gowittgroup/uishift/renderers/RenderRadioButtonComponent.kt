@@ -2,36 +2,41 @@ package com.gowittgroup.uishift.renderers
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import com.gowittgroup.uishift.components.UiShiftRadioButton
 import com.gowittgroup.uishift.components.UiShiftText
+import com.gowittgroup.uishift.constants.ComponentType
 import com.gowittgroup.uishift.models.components.RadioButtonComponent
+import com.gowittgroup.uishift.models.properties.Field
+import com.gowittgroup.uishift.models.properties.ValidationTrigger
 import com.gowittgroup.uishift.screen.ComponentState
+import com.gowittgroup.uishift.screen.ScreenIntent
 
 @Composable
 fun RenderRadioButtonComponent(
     state: ComponentState.RadioButtonState,
     component: RadioButtonComponent,
-    onClick: () -> Unit
+    onIntent: (ScreenIntent) -> Unit
 ) {
-    var isSelected by remember {
-        mutableStateOf(false)
-    }
-    isSelected = state.selected
-
     RenderBaseProperties(component) { modifier ->
         Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
             UiShiftRadioButton(
                 isEnabled = component.isEnabled,
-                selected = isSelected,
-                onClick = onClick
+                selected = state.selected,
+                onClick = {
+                    onIntent(ScreenIntent.UpdateRadioButton(component.id, !state.selected))
+
+                    if (component.validations.any { it.trigger == ValidationTrigger.ON_VALUE_CHANGE }) {
+                        onIntent(
+                            ScreenIntent.Validate(
+                                field = Field(id = component.id, type = ComponentType.RADIO_BUTTON),
+                                validations = component.validations
+                            )
+                        )
+                    }
+                }
             )
             UiShiftText(text = component.label)
         }
     }
-
 }

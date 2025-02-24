@@ -4,27 +4,21 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import com.gowittgroup.uishift.components.UiShiftSwitch
+import com.gowittgroup.uishift.constants.ComponentType
 import com.gowittgroup.uishift.models.components.SwitchComponent
+import com.gowittgroup.uishift.models.properties.Field
+import com.gowittgroup.uishift.models.properties.ValidationTrigger
 import com.gowittgroup.uishift.screen.ComponentState
+import com.gowittgroup.uishift.screen.ScreenIntent
 
 @Composable
 fun RenderSwitchComponent(
     state: ComponentState.SwitchState,
     component: SwitchComponent,
-    onCheckedChange: (Boolean) -> Unit
+    onIntent: (ScreenIntent) -> Unit
 ) {
-    var isChecked by remember {
-        mutableStateOf(false)
-    }
-
-    isChecked = state.isChecked
-
     RenderBaseProperties(component) { modifier ->
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -34,9 +28,19 @@ fun RenderSwitchComponent(
             Text(component.label)
             UiShiftSwitch(
                 isEnabled = component.isEnabled,
-                checked = isChecked,
-                onCheckedChange = onCheckedChange
+                checked = state.isChecked,
+                onCheckedChange = { isChecked ->
+                    onIntent(ScreenIntent.UpdateSwitch(component.id, isChecked))
+
+                    if (component.validations.any { it.trigger == ValidationTrigger.ON_VALUE_CHANGE }) {
+                        ScreenIntent.Validate(
+                            field = Field(id = component.id, type = ComponentType.SWITCH),
+                            validations = component.validations
+                        )
+                    }
+                }
             )
         }
     }
 }
+

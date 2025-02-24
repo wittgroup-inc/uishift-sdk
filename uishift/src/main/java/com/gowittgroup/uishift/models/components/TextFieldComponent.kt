@@ -26,6 +26,7 @@ data class TextFieldComponent(
     val imeAction: ImeAction = ImeAction.DONE,
     val keyboardType: KeyboardType = KeyboardType.TEXT,
     val visualTransformation: VisualTransformation = VisualTransformation.NONE,
+    val validations: List<Validation> = listOf(),
     override val id: String,
     override val padding: Padding = Padding(),
     override val background: Background? = null,

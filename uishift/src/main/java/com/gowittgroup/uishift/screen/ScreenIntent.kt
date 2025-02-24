@@ -13,7 +13,8 @@ sealed class ScreenIntent {
     data class SubmitForm(val fields: Map<String, String>) : ScreenIntent()
     data class NavigateTo(val destination: String) : ScreenIntent()
     data class ApiRequest(val request: Request) : ScreenIntent()
-    data class Validate(val field: Field, val validation: Validation) : ScreenIntent()
+    data class Validate(val field: Field, val validations: List<Validation>) : ScreenIntent()
+    //data class Validate(val field: Field, val validation: Validation) : ScreenIntent()
     data class ShowError(val field: String) : ScreenIntent()
     data class ShowSuccess(val message: String): ScreenIntent()
 }

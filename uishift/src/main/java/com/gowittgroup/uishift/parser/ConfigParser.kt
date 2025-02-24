@@ -7,7 +7,20 @@ import com.gowittgroup.uishift.constants.ComponentType
 import com.gowittgroup.uishift.constants.RequestType
 import com.gowittgroup.uishift.constants.ValidationType
 import com.gowittgroup.uishift.models.ScreenConfiguration
-import com.gowittgroup.uishift.models.components.*
+import com.gowittgroup.uishift.models.components.ButtonComponent
+import com.gowittgroup.uishift.models.components.CheckBoxComponent
+import com.gowittgroup.uishift.models.components.ColumnComponent
+import com.gowittgroup.uishift.models.components.DividerComponent
+import com.gowittgroup.uishift.models.components.ImageComponent
+import com.gowittgroup.uishift.models.components.RadioButtonComponent
+import com.gowittgroup.uishift.models.components.RowComponent
+import com.gowittgroup.uishift.models.components.SliderComponent
+import com.gowittgroup.uishift.models.components.SpacerComponent
+import com.gowittgroup.uishift.models.components.SwitchComponent
+import com.gowittgroup.uishift.models.components.TextComponent
+import com.gowittgroup.uishift.models.components.TextFieldComponent
+import com.gowittgroup.uishift.models.components.UIComponent
+import com.gowittgroup.uishift.models.components.Unknown
 import com.gowittgroup.uishift.models.properties.Action
 import com.gowittgroup.uishift.models.properties.ActionFlow
 import com.gowittgroup.uishift.models.properties.Request
@@ -66,7 +79,7 @@ class ConfigParser {
                 .withSubtype(Validation.Text::class.java, ValidationType.TEXT)
                 .withSubtype(Validation.Binary::class.java, ValidationType.BOOLEAN)
                 .withSubtype(Validation.Numeric::class.java, ValidationType.NUMERIC)
-                .withSubtype(Validation.None::class.java, ValidationType.NONE)  // Instantiate the data class here
+                .withSubtype(Validation.None::class.java, ValidationType.NONE)
         )
         .add(KotlinJsonAdapterFactory())
         .build()

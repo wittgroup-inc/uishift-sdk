@@ -7,31 +7,31 @@ sealed class ComponentState {
     data class TextFieldState(
         val value: String = "",
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 
     data class CheckBoxState(
         val isChecked: Boolean = false,
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 
     data class SwitchState(
         val isChecked: Boolean = false,
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 
     data class RadioButtonState(
         val selected: Boolean = false,
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 
     data class SliderState(
         val value: Float = 0.0f,
         val isValid: Boolean = true,
-        val errorMessage: String? = null
+        val errorMessages: List<String> = emptyList()
     ) : ComponentState()
 }
 

@@ -5,6 +5,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import com.gowittgroup.uishift.models.components.ColumnComponent
+import com.gowittgroup.uishift.models.properties.toHorizontalAlignment
+import com.gowittgroup.uishift.models.properties.toVerticalArrangement
 import com.gowittgroup.uishift.screen.ScreenIntent
 import com.gowittgroup.uishift.screen.ScreenState
 
@@ -16,14 +18,20 @@ fun RenderColumnComponent(
 ) {
     RenderBaseProperties(component) { modifier ->
         if (component.isScrollable) {
-            LazyColumn(modifier = modifier) {
+            LazyColumn(
+                modifier = modifier,
+                verticalArrangement = component.childrenArrangement.toVerticalArrangement(),
+                horizontalAlignment = component.childrenAlignment.toHorizontalAlignment()
+            ) {
                 items(items = component.children, key = { it.id }) { child ->
                     RenderComponent(child, screenState, onIntent)
                 }
             }
         } else {
             Column(
-                modifier = modifier
+                modifier = modifier,
+                verticalArrangement = component.childrenArrangement.toVerticalArrangement(),
+                horizontalAlignment = component.childrenAlignment.toHorizontalAlignment()
             ) {
                 component.children.forEach { child ->
                     RenderComponent(child, screenState, onIntent)
@@ -31,5 +39,4 @@ fun RenderColumnComponent(
             }
         }
     }
-
 }
